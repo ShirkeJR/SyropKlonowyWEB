@@ -1,0 +1,25 @@
+<div>
+  <h3> Sektory magazynu </h3>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa sektoru</th>
+      <th>Maksymalna pojemność</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let warehouseSector of warehouseSectors">
+      <td>{{warehouseSector.id}}</td>
+      <td>{{warehouseSector.name}}</td>
+      <td>{{warehouseSector.maxAmountOfProducts}}</td>
+      <td></td>
+      <td><button class="btn btn-info" [routerLink]="['details', warehouseSector.id]"> Informacje </button></td>
+    </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-primary" [routerLink]="['add']">Dodaj nowy sektor</button>
+</div>

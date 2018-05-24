@@ -1,0 +1,14 @@
+<div>
+  <h2 class="text-center">Kreator nowego sektoru</h2>
+  <form>
+    <div class="form-group">
+      <label for="name">Nazwa sektora:</label>
+      <input [(ngModel)]="warehouseSector.name" placeholder="nazwa" name="name" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="maxAmountOfProducts">Maksymalna pojemność sektoru:</label>
+      <input [(ngModel)]="warehouseSector.maxAmountOfProducts" placeholder="pojemność" name="maxAmountOfProducts" class="form-control" id="maxAmountOfProducts">
+    </div>
+    <button class="btn btn-success" (click)="createWarehouseSector()">Create</button>
+  </form>
+</div>
