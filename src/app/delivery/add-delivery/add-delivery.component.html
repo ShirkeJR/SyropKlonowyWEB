@@ -1,0 +1,80 @@
+<div>
+  <h2 class="text-center">Kreator nowej dostawy</h2>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <form (ngSubmit)="addProductToDelivery(f)" #f="ngForm">
+          <h3 class="text-center">Produkt</h3>
+          <div class="form-group">
+            <label for="name">Nazwa:</label>
+            <input id="name" placeholder="nazwa" name="name" ngModel class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="price">Cena:</label>
+            <input id="price" placeholder="100PLN" name="price" ngModel class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="category">Kategoria:</label>
+            <select id="category" name="category" ngModel class="form-control" required>
+              <option>COMPUTER_PC</option>
+              <option>COMPUTER_LAPTOP</option>
+              <option>PHONE</option>
+              <option>AUDIO</option>
+              <option>TV</option>
+              <option>SPEAKER</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="productionDate">Data:</label>
+            <input id="productionDate" placeholder="DD/MM/YYYY" name="productionDate" ngModel class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Opis:</label>
+            <input id="description" placeholder="opis..." name="description" ngModel class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="quantity">Ilość:</label>
+            <input id="quantity" placeholder="100" name="quantity" ngModel class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="code">Kod produktu:</label>
+            <input id="code" placeholder="X2325" name="code" ngModel class="form-control" required>
+          </div>
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Dodaj produkt</button>
+        </form>
+      </div>
+      <div class="col-sm-8">
+        <h3 class="text-center">Lista produktów w dostawie</h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Nazwa</th>
+            <th>Cena</th>
+            <th>Kategoria</th>
+            <th>Data</th>
+            <th>Opis</th>
+            <th>Ilość</th>
+            <th>Kod produktu</th>
+            <th><button class="btn btn-success" [disabled]="!hasProducts" (click)="createDelivery()">Stwórz dostawę</button></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of products">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.productionDate}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.code}}</td>
+            <td>
+              <!--<button class="btn btn-danger" (click)="deleteProduct(product)">Usuń produkt</button>-->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

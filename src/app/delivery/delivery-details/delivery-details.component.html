@@ -1,0 +1,35 @@
+<div>
+  <li class="row">
+    <ul><h2>Szczegóły dostawy</h2></ul>
+  </li>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa</th>
+      <th>Ilość</th>
+      <th>
+        <select id="warehouseSector" name="warehouseSector" ngModel #sector="ngModel" class="form-control" required>
+          <option *ngFor="let warehouseSector of warehouseSectors" [value]="warehouseSector.id">
+            <p>{{warehouseSector.name}}
+              [{{warehouseSector.currentAmountOfProducts}} /
+              {{warehouseSector.maxAmountOfProducts}}]</p>
+          </option>
+        </select>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of deliveryInProgress.productsLeftForDelivery">
+      <td>{{product.productId}}</td>
+      <td>{{product.productName}}</td>
+      <td>{{product.amount}}</td>
+      <td>
+        <input name="amount" ngModel required #amount="ngModel"  placeholder="0" class="form-control" required>
+      </td>
+      <td><button class="btn btn-danger" (click)="placeProduct(product.productId, amount.value, sector.value)">Rozłóż</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

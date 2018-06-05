@@ -1,14 +1,19 @@
 <div>
-  <h2>Lista produktów</h2>
+  <h2>Sczegóły sektora</h2>
   <table class="table table-striped">
     <thead>
     <tr>
       <th>Id</th>
-      <th>Produkt</th>
+      <th>ProduktId</th>
       <th>Ilość</th>
     </tr>
     </thead>
     <tbody>
+    <tr *ngFor="let product of warehouseSector.notReservedAmountOfProducts">
+    <td>{{product.id}}</td>
+    <td>{{product.productId}}</td>
+    <td>{{product.quantity}}</td>
+    </tr>
     </tbody>
   </table>
 </div>

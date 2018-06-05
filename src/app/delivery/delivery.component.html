@@ -1,0 +1,26 @@
+<div>
+  <h3> Lista dostaw </h3>
+
+  <h2 *ngIf=""></h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Data</th>
+      <th>Status</th>
+      <th></th>
+      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nową dostawę</button></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let delivery of deliveries">
+      <td>{{delivery.id}}</td>
+      <td>{{delivery.deliveryDate}}</td>
+      <td>{{delivery.deliveryStatus}}</td>
+      <td></td>
+      <td><button class="btn btn-info" [routerLink]="['details', delivery.id, delivery.deliveryStatus]"> Rozkładaj </button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

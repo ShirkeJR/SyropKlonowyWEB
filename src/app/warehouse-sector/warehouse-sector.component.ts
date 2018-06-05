@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { WarehouseSectorService } from '../shared/warehouse-sector/warehouse-sector.service';
+import { WarehouseSectorService } from './warehouse-sector.service';
 import { WarehouseSector } from '../models/WarehouseSector.model';
 
 @Component({

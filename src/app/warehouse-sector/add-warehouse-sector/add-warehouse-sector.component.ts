@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { WarehouseSector } from '../../models/WarehouseSector.model';
-import { WarehouseSectorService } from '../../shared/warehouse-sector/warehouse-sector.service';
+import { WarehouseSectorService } from '../warehouse-sector.service';
 
 @Component({
   templateUrl: './add-warehouse-sector.component.html',

@@ -1,0 +1,21 @@
+<nav class="navbar navbar-dark navbar-expand-xl bg-dark navbar-dark">
+  <div class="navbar">
+    <div class="navbar-header">
+      <a routerLink="/warehouseSectors" class="navbar-brand">Magazyn</a>
+    </div>
+    <ul class="navbar-nav nav-justified">
+      <li class="nav-item" routerLinkActive="active"><a routerLink="/warehouseSectors">Sektory magazynu </a></li>
+      <li class="nav-item" routerLinkActive="active"><a routerLink="/products">Produkty na magazynie </a></li>
+      <li class="nav-item" routerLinkActive="active"><a routerLink="/deliveries">Dostawy </a></li>
+      <li class="nav-item" routerLinkActive="active"><a routerLink="/clients">Klienci </a></li>
+    </ul>
+    <ul class="nav navbar-nav" *ngIf="false">
+      <ng-template>
+        <li><a routerLink="/signup">Register</a></li>
+        <li><a routerLink="/signin">Login</a></li>
+      </ng-template>
+      <li><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<br>
