@@ -1,0 +1,21 @@
+<div>
+  <li class="row">
+    <ul><h2>Szczegóły dostawy</h2></ul>
+  </li>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>ProductId</th>
+      <th>Ilość</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of saleOrder.amountsOfProducts">
+      <td>{{product.id}}</td>
+      <td>{{product.productId}}</td>
+      <td>{{product.quantity}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

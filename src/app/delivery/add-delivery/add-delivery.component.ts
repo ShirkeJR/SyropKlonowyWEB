@@ -56,10 +56,7 @@ export class AddDeliveryComponent implements OnInit {
   }
 
   hasProducts(): boolean {
-    if (this.products.length > 0) {
-      return true;
-    }
-    return false;
+    return this.products.length > 0;
   }
 }
 

@@ -1,0 +1,28 @@
+<div>
+  <h3> Lista zamówień realizowanych </h3>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>ClientId</th>
+      <th>Data zamówienia</th>
+      <th>Cena zamówienia</th>
+      <th>Status zamówienia</th>
+      <th></th>
+      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nowe zamówienie</button></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let saleOrder of saleOrders">
+      <td>{{saleOrder.id}}</td>
+      <td>{{saleOrder.clientId}}</td>
+      <td>{{saleOrder.dateOfOrder}}</td>
+      <td>{{saleOrder.totalPrice}}</td>
+      <td>{{saleOrder.saleOrderStatus}}</td>
+      <td></td>
+      <td><button class="btn btn-info" [routerLink]="['details', saleOrder.id]"> Szczegóły </button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

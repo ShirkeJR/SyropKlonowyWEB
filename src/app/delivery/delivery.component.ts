@@ -16,7 +16,8 @@ export class DeliveryComponent implements OnInit {
   constructor(private router: Router, private deliveryService: DeliveryService) { }
 
   ngOnInit() {
-    this.deliveryService.getAll().subscribe(data => {
+    this.deliveryService.getAllByDeliveryStatusOrDeliveryStatus('NEW', 'IN_PROCESS').subscribe(data => {
+      console.log(data);
       this.deliveries = data.payload;
     });
   }

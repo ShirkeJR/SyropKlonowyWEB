@@ -1,5 +1,5 @@
 <div>
-  <h3> Lista dostaw </h3>
+  <h3> Historia dostaw </h3>
 
   <table class="table table-striped">
     <thead>
@@ -8,7 +8,7 @@
       <th>Data</th>
       <th>Status</th>
       <th></th>
-      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nową dostawę</button></th>
+      <th></th>
     </tr>
     </thead>
     <tbody>
@@ -17,7 +17,7 @@
       <td>{{delivery.deliveryDate}}</td>
       <td>{{delivery.deliveryStatus}}</td>
       <td></td>
-      <td><button class="btn btn-info" [routerLink]="['details', delivery.id, delivery.deliveryStatus]"> Rozkładaj </button></td>
+      <td><button class="btn btn-info" [routerLink]="['details', delivery.id]"> Szczegóły </button></td>
     </tr>
     </tbody>
   </table>

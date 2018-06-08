@@ -12,16 +12,17 @@ export class DeliveryService {
   public constructor(private http: HttpClient) {}
 
   private deliveryUrl = 'http://localhost:8080/api/delivery/delivery/';
-  private delivertHandleUrl = 'http://localhost:8080/api/deliveryHandling/deliveryHandling/'
+  private delivertHandleUrl = 'http://localhost:8080/api/deliveryHandling/deliveryHandling/';
   private date = '01%2F01%2F1990';
 
   public getAll(): Observable<Response<Delivery>> {
     return this.http.get<Response<Delivery>>(this.deliveryUrl + 'getAll');
   }
 
-  public getAllByDeliveryStatus(status: String): Observable<Response<Delivery>> {
-    return this.http.get<Response<Delivery>>(this.deliveryUrl + 'getAllByDeliveryStatus?' +
-    'deliveryStatus=' + status);
+  public getAllByDeliveryStatusOrDeliveryStatus(status1: String, status2: String): Observable<Response<Delivery>> {
+    return this.http.get<Response<Delivery>>(this.deliveryUrl + 'getAllByDeliveryStatusOrDeliveryStatus?' +
+      'deliveryStatus1=' + status1 +
+      '&deliveryStatus2=' + status2);
   }
 
   public getProcessedDeliveryById(id: string): Observable<Response<DeliveryInProcessView>> {

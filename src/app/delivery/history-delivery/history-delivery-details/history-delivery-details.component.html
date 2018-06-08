@@ -1,0 +1,31 @@
+<div>
+  <li class="row">
+    <ul><h2>Szczegóły dostawy</h2></ul>
+  </li>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa</th>
+      <th>Cena</th>
+      <th>Kategoria</th>
+      <th>Data produkcji</th>
+      <th>Kod</th>
+      <th>Opis</th>
+      <th>Ilość</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of delivery.listOfProducts">
+      <td>{{product.product.id}}</td>
+      <td>{{product.product.name}}</td>
+      <td>{{product.product.price}}</td>
+      <td>{{product.product.category}}</td>
+      <td>{{product.product.productionDate}}</td>
+      <td>{{product.product.code}}</td>
+      <td>{{product.product.description}}</td>
+      <td>{{product.quantity}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

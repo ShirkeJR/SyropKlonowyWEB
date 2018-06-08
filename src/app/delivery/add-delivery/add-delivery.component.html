@@ -56,7 +56,9 @@
             <th>Opis</th>
             <th>Ilość</th>
             <th>Kod produktu</th>
-            <th><button class="btn btn-success" [disabled]="!hasProducts" (click)="createDelivery()">Stwórz dostawę</button></th>
+            <th>
+              <button class="btn btn-success" [disabled]="!hasProducts()" (click)="createDelivery()">Stwórz dostawę</button>
+            </th>
           </tr>
           </thead>
           <tbody>

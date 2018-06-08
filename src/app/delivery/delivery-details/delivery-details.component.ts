@@ -38,10 +38,12 @@ export class DeliveryDetailsComponent implements OnInit {
         this.deliveryService.startDelivery(id)
           .subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
       }
-      this.deliveryService.getProcessedDeliveryById(id)
-        .subscribe((data: Response<DeliveryInProcessView>) => {
-          this.deliveryInProgress = data.payload[0];
-      });
+      setTimeout( () => {
+        this.deliveryService.getProcessedDeliveryById(id)
+          .subscribe((data: Response<DeliveryInProcessView>) => {
+            this.deliveryInProgress = data.payload[0];
+          });
+        }, 100 );
     });
   }
 

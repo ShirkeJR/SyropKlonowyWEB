@@ -13,6 +13,12 @@ import {HeaderComponent} from './header/header.component';
 import {AddDeliveryComponent} from './delivery/add-delivery/add-delivery.component';
 import {ClientComponent} from './client/client.component';
 import {AddClientComponent} from './client/add-client/add-client.component';
+import {HistoryDeliveryComponent} from './delivery/history-delivery/history-delivery.component';
+import {HistoryDeliveryDetailsComponent} from './delivery/history-delivery/history-delivery-details/history-delivery-details.component';
+import {HistorySaleOrderComponent} from './sale-order/history-sale-order/history-sale-order.component';
+import {SaleOrderComponent} from './sale-order/sale-order.component';
+import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
+import {AddSaleOrderComponent} from './sale-order/add-sale-order/add-sale-order.component';
 
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
@@ -21,7 +27,14 @@ const routes: Routes = [
   {path: 'products', component: ProductComponent},
   {path: 'deliveries', component: DeliveryComponent},
   {path: 'deliveries/add', component: AddDeliveryComponent},
+  {path: 'deliveries/history', component: HistoryDeliveryComponent},
+  {path: 'deliveries/history/details/:id', component: HistoryDeliveryDetailsComponent},
   {path: 'deliveries/details/:id/:status', component: DeliveryDetailsComponent},
+  {path: 'saleOrders', component: SaleOrderComponent},
+  {path: 'saleOrders/history', component: HistorySaleOrderComponent},
+  {path: 'saleOrders/history/details/:id', component: HistorySaleOrderDetailsComponent},
+  {path: 'saleOrders/details/:id', component: SaleOrderComponent},
+  {path: 'saleOrders/add', component: AddSaleOrderComponent},
   {path: 'clients', component: ClientComponent},
   {path: 'clients/add', component: AddClientComponent},
   {path: 'signup', component: SignupComponent},

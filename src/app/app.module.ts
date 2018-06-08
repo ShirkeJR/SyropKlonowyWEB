@@ -21,6 +21,14 @@ import {ClientComponent} from './client/client.component';
 import {ClientService} from './client/client.service';
 import {AddDeliveryComponent} from './delivery/add-delivery/add-delivery.component';
 import {AddClientComponent} from './client/add-client/add-client.component';
+import {HistoryDeliveryComponent} from './delivery/history-delivery/history-delivery.component';
+import {HistoryDeliveryDetailsComponent} from './delivery/history-delivery/history-delivery-details/history-delivery-details.component';
+import {HistorySaleOrderComponent} from './sale-order/history-sale-order/history-sale-order.component';
+import {SaleOrderService} from './sale-order/sale-order.service';
+import {SaleOrderComponent} from './sale-order/sale-order.component';
+import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
+import {AddSaleOrderComponent} from './sale-order/add-sale-order/add-sale-order.component';
+import {FilterPipe} from './sale-order/add-sale-order/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +44,14 @@ import {AddClientComponent} from './client/add-client/add-client.component';
     HeaderComponent,
     ClientComponent,
     AddDeliveryComponent,
-    AddClientComponent
+    AddClientComponent,
+    HistoryDeliveryComponent,
+    HistoryDeliveryDetailsComponent,
+    HistorySaleOrderComponent,
+    SaleOrderComponent,
+    HistorySaleOrderDetailsComponent,
+    AddSaleOrderComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +59,7 @@ import {AddClientComponent} from './client/add-client/add-client.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService],
+  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService, SaleOrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
