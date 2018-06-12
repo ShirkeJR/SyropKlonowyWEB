@@ -3,7 +3,7 @@ import {Client} from '../../models/Client.model';
 
 
 @Pipe({
-  name: 'filter'
+  name: 'filter2'
 })
 
 export class ClientOrderFilterPipe implements PipeTransform {

@@ -12,6 +12,7 @@ import {Response} from '../../../models/Response.model';
 
 export class HistoryDeliveryDetailsComponent implements OnInit {
 
+  deliveryId: string;
   delivery: Delivery;
 
   constructor(private router: Router,
@@ -21,12 +22,17 @@ export class HistoryDeliveryDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.deliveryService.getById(id)
-        .subscribe((data: Response<Delivery>) => {
+      this.deliveryId = params['id'];
+      console.log(this.deliveryId);
+    });
+    setTimeout( () => {
+      this.deliveryService.getDeliveryWithId(this.deliveryId)
+        .subscribe(data => {
+          console.log(data);
           this.delivery = data.payload[0];
         });
-    });
+    }, 100 );
+
   }
 
 }

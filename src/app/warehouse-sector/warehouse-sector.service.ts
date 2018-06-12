@@ -3,6 +3,7 @@ import { HttpClient  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../models/Response.model';
 import {WarehouseSector} from '../models/WarehouseSector.model';
+import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
 
 @Injectable()
 export class WarehouseSectorService {
@@ -24,6 +25,11 @@ export class WarehouseSectorService {
   public getById(id: string): Observable<Response<WarehouseSector>> {
     return this.http.get<Response<WarehouseSector>>(this.warehouseSectorUrl + 'getById?' +
       'id=' + id);
+  }
+
+  public getAllProductsOnSector(id: string): Observable<Response<WarehouseSectorProductsView>>{
+    return this.http.get<Response<WarehouseSectorProductsView>>(this.warehouseSectorUrl + 'getAllProductsOnSector?' +
+    'sectorId=' + id);
   }
 
   public getByName(name: string): Observable<Response<WarehouseSector>> {

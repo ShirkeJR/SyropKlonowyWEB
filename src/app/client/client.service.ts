@@ -11,6 +11,7 @@ export class ClientService {
   public constructor(private http: HttpClient) {}
 
   private clientUrl = 'http://localhost:8080/api/client/client/';
+  private clientMarketingUrl = 'http://localhost:8080/api/marketing/client/';
 
   public getAll(): Observable<Response<Client>> {
     return this.http.get<Response<Client>>(this.clientUrl + 'getAll');
@@ -31,6 +32,4 @@ export class ClientService {
       '&zipCode=' + client.deliveryAddress.zipCode +
       '&enterpriseType=' + client.enterpriseType, null);
   }
-
-
 }

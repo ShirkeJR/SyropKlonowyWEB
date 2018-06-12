@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Product} from '../models/Product.model';
 import {ProductService} from './product.service';
+import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
 
 
 @Component({
@@ -11,7 +11,7 @@ import {ProductService} from './product.service';
 })
 export class ProductComponent implements OnInit {
 
-  products: Product[];
+  products: WarehouseSectorProductsView[];
 
   constructor(private router: Router, private productService: ProductService) { }
 

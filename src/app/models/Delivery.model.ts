@@ -1,9 +1,9 @@
-import {ProductWithQuantity} from './ProductWithQuantity.model';
+import {ProductWithQuantityView} from './ProductWithQuantityView.model';
 
 export class Delivery {
 
-  id: string;
   deliveryDate: string;
-  listOfProducts: Array<ProductWithQuantity>;
   deliveryStatus: string;
+  id: string;
+  listOfProducts: ProductWithQuantityView[];
 }

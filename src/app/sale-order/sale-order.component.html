@@ -21,7 +21,14 @@
       <td>{{saleOrder.totalPrice}}</td>
       <td>{{saleOrder.saleOrderStatus}}</td>
       <td></td>
-      <td></td>
+      <td>
+        <div *ngIf="isItNew(saleOrder)">
+          <button class="btn btn-info" (click)="payForSale(saleOrder)">Zapłać</button>
+        </div>
+        <div *ngIf="isItPaid(saleOrder)">
+          <button class="btn btn-success" (click)="sendSale(saleOrder)">Wyslij</button>
+        </div>
+      </td>
     </tr>
     </tbody>
   </table>

@@ -3,8 +3,8 @@ import { HttpClient  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../models/Response.model';
 import {Delivery} from '../models/Delivery.model';
-import {Product} from '../models/Product.model';
 import {DeliveryInProcessView} from '../models/DeliveryInProcessView.model';
+import {ProductWithQuantityView} from '../models/ProductWithQuantityView.model';
 
 @Injectable()
 export class DeliveryService {
@@ -35,16 +35,16 @@ export class DeliveryService {
       'deliveryId=' + id, null);
   }
 
-  public getById(id: string): Observable<Response<Delivery>> {
+  public getDeliveryWithId(id: string): Observable<Response<Delivery>> {
     return this.http.get<Response<Delivery>>(this.deliveryUrl + 'getDeliveryWithId?' +
       'id=' + id);
   }
 
-  public performDelivery(): Observable<Response<Delivery>> {
-    return this.http.put<Response<Delivery>>(this.deliveryUrl + 'performDelivery', null);
+  public confirmDelivery(): Observable<Response<Delivery>> {
+    return this.http.put<Response<Delivery>>(this.deliveryUrl + 'confirmDelivery?', null);
   }
 
-  public addProductToTemplate(product: Product): Observable<Response<Delivery>> {
+  public addProductToTemplate(product: ProductWithQuantityView): Observable<Response<Delivery>> {
     console.log(product);
     return this.http.put<Response<Delivery>>(this.deliveryUrl + 'addProductToTemplate?' +
     'name=' + product.name +
@@ -64,4 +64,13 @@ export class DeliveryService {
       '&sectorId=' + sectorId, null);
   }
 
+  public removeProduct(name: string, quantity: string): Observable<Response<Delivery>> {
+    return this.http.get<Response<Delivery>>(this.deliveryUrl + 'removeProductFromCurrentTemplate?' +
+      'productName=' + name +
+      '&quantity=' + quantity);
+  }
+
+  public getCurrentTemplate(): Observable<Response<Delivery>> {
+    return this.http.get<Response<Delivery>>(this.deliveryUrl + 'getCurrentTemplate');
+  }
 }

@@ -20,11 +20,12 @@ import {SaleOrderComponent} from './sale-order/sale-order.component';
 import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
 import {AddSaleOrderComponent} from './sale-order/sale-order-creator/add-sale-order/add-sale-order.component';
 import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-order-creator.component';
+import {ClientDetailsComponent} from './client/client-details/client-details.component';
 
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
   {path: 'warehouseSectors/add', component: AddWarehouseSectorComponent},
-  {path: 'warehouseSectors/details/:id', component: WarehouseSectorDetailsComponent},
+  {path: 'warehouseSectors/details/:id/:name', component: WarehouseSectorDetailsComponent},
   {path: 'products', component: ProductComponent},
   {path: 'deliveries', component: DeliveryComponent},
   {path: 'deliveries/add', component: AddDeliveryComponent},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'saleOrders/creator', component: SaleOrderCreatorComponent},
   {path: 'saleOrders/creator/add/:id', component: AddSaleOrderComponent},
   {path: 'clients', component: ClientComponent},
+  {path: 'clients/details/:id', component: ClientDetailsComponent},
   {path: 'clients/add', component: AddClientComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},

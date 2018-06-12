@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {WarehouseSector} from '../../models/WarehouseSector.model';
-import {Response} from '../../models/Response.model';
 import {WarehouseSectorService} from '../warehouse-sector.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {WarehouseSectorProductsView} from '../../models/WarehouseSectorProductsView.model';
 
 
 @Component({
@@ -13,16 +12,19 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 export class WarehouseSectorDetailsComponent implements OnInit {
 
-  warehouseSector: WarehouseSector;
+  products: WarehouseSectorProductsView[];
+  sectorId: string;
+  sectorName: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private warehouseSectorService: WarehouseSectorService) {
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.warehouseSectorService.getById(id).subscribe((data: Response<WarehouseSector>) => {
-        this.warehouseSector = data.payload[0];
+      this.sectorId = params['id'];
+      this.sectorName = params['name'];
+      this.warehouseSectorService.getAllProductsOnSector(this.sectorId).subscribe(data => {
+        this.products = data.payload;
       });
     });
   }

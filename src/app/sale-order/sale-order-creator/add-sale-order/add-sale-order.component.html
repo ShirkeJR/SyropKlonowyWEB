@@ -17,11 +17,11 @@
           </tr>
           </thead>
           <tbody class="table-sm">
-          <tr *ngFor="let product of productsFromWarehouse | filter: searchText ">
+          <tr *ngFor="let product of productsFromWarehouse | filter3: searchText ">
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
             <td>{{product.category}}</td>
-            <td>1000</td>
+            <td>{{product.quantity}}</td>
             <td class="form-control">
               <input name="amount" ngModel required #amount="ngModel" placeholder="0" class="form-control">
             </td>
@@ -37,24 +37,29 @@
         <table class="table table-success table-hover">
           <thead class="table-primary">
           <tr>
-            <th>Nazwa</th>
-            <th>Cena</th>
+            <th>#</th>
             <th>Ilość</th>
             <th>
               <button class="btn btn-sm btn-success" [disabled]="!hasProducts()" (click)="createSaleOrder()">Stwórz dostawę
               </button>
             </th>
+            <th></th>
           </tr>
           </thead>
           <tbody class="table-sm">
           <tr *ngFor="let product of products">
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
+            <td>{{product.productId}}</td>
             <td>{{product.quantity}}</td>
             <td></td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteProduct(product)">Usuń produkt</button>
+            </td>
           </tr>
           </tbody>
         </table>
+        <h5>Zamawiąjący: {{saleOrder.clientId}}</h5>
+        <h5>Data zamówienia: {{saleOrder.dateOfOrder}}</h5>
+        <h5>Suma zamówienia: {{saleOrder.totalPrice}}</h5>
       </div>
     </div>
   </div>

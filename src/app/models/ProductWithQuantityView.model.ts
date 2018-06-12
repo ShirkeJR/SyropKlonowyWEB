@@ -1,4 +1,4 @@
-export class Product {
+export class ProductWithQuantityView {
 
   id: string;
   name: string;
@@ -8,6 +8,7 @@ export class Product {
   description: string;
   code: string;
   quantity: string;
+
 
   constructor(name: string, price: string, category: string, productionDate: string, description: string, code: string, quantity: string) {
     this.name = name;

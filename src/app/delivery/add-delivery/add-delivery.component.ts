@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DeliveryService} from '../delivery.service';
-import {Product} from '../../models/Product.model';
 import {NgForm} from '@angular/forms';
+import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
 
 @Component({
   selector: 'app-add-delivery',
@@ -12,18 +12,24 @@ import {NgForm} from '@angular/forms';
 
 export class AddDeliveryComponent implements OnInit {
 
-  products: Product[] = [];
+  products: ProductWithQuantityView[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private deliveryService: DeliveryService) {
   }
 
   ngOnInit() {
+    this.getProductsFromTemplate();
+  }
 
+  getProductsFromTemplate() {
+    this.deliveryService.getCurrentTemplate().subscribe( data => {
+      this.products = data.payload[0].listOfProducts;
+    });
   }
 
   addProductToDelivery(form: NgForm): void {
     console.log(form.value.name);
-    const product = new Product(
+    const product = new ProductWithQuantityView(
       form.value.name,
       form.value.price,
       form.value.category,
@@ -32,18 +38,19 @@ export class AddDeliveryComponent implements OnInit {
       form.value.code,
       form.value.quantity);
     this.deliveryService.addProductToTemplate(product).subscribe(data => {
-        if (Boolean(data.ok).valueOf()) {
-          this.products.push(product);
-        } else {
+        if (!Boolean(data.ok).valueOf()) {
           alert('Nie poprawny product');
         }
         console.log(data.ok);
     });
+    setTimeout( () => {
+      this.getProductsFromTemplate();
+    }, 100 );
   }
 
   createDelivery(): void {
     if (this.products.length > 0) {
-      this.deliveryService.performDelivery()
+      this.deliveryService.confirmDelivery()
         .subscribe(data => {
           this.router.navigate(['deliveries']);
           alert('Dostawa została stworzona');
@@ -51,8 +58,13 @@ export class AddDeliveryComponent implements OnInit {
     }
   }
 
-  deleteProduct(product: Product): void {
-    this.products = this.products.filter(item => item !== product);
+  deleteProduct(product: ProductWithQuantityView): void {
+    this.deliveryService.removeProduct(product.name, product.quantity).subscribe( data => {
+      console.log(data);
+    });
+    setTimeout( () => {
+      this.getProductsFromTemplate();
+    }, 100 );
   }
 
   hasProducts(): boolean {

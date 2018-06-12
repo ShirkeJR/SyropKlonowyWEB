@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Response} from '../../models/Response.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Delivery} from '../../models/Delivery.model';
 import {DeliveryService} from '../delivery.service';
-import {ProductWithQuantity} from '../../models/ProductWithQuantity.model';
 import {WarehouseSector} from '../../models/WarehouseSector.model';
 import {WarehouseSectorService} from '../../warehouse-sector/warehouse-sector.service';
 import {DeliveryInProcessView} from '../../models/DeliveryInProcessView.model';
-import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-delivery-details',
@@ -19,6 +17,7 @@ export class DeliveryDetailsComponent implements OnInit {
 
   deliveryInProgress: DeliveryInProcessView;
   warehouseSectors: WarehouseSector[];
+  deliveryId: string;
 
   constructor(private route: ActivatedRoute, private router: Router,
               private deliveryService: DeliveryService,
@@ -30,33 +29,47 @@ export class DeliveryDetailsComponent implements OnInit {
       this.warehouseSectors = data.payload;
     });
     this.route.params.subscribe(params => {
-      const id = params['id'];
-      console.log(id);
+      this.deliveryId = params['id'];
+      console.log(this.deliveryId);
       const status = params['status'];
       console.log(status);
       if (status === 'NEW') {
-        this.deliveryService.startDelivery(id)
+        this.deliveryService.startDelivery(this.deliveryId)
           .subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
       }
-      setTimeout( () => {
-        this.deliveryService.getProcessedDeliveryById(id)
-          .subscribe((data: Response<DeliveryInProcessView>) => {
-            this.deliveryInProgress = data.payload[0];
-          });
-        }, 100 );
     });
+    setTimeout( () => {
+      this.deliveryService.getProcessedDeliveryById(this.deliveryId)
+        .subscribe((data: Response<DeliveryInProcessView>) => {
+          this.deliveryInProgress = data.payload[0];
+        });
+    }, 100 );
   }
 
   placeProduct(id: string, amount: string, sectorId: string) {
-    this.deliveryService.placeProduct(this.deliveryInProgress.deliveryId, id, amount, sectorId)
+    this.deliveryService.placeProduct(this.deliveryId, id, amount, sectorId)
       .subscribe((data: Response<DeliveryInProcessView>) => {
     });
-    this.deliveryService.getProcessedDeliveryById(id)
-      .subscribe((data: Response<DeliveryInProcessView>) => {
-        console.log(id);
-        console.log(data);
-        this.deliveryInProgress = data.payload[0];
+    setTimeout( () => {
+      this.warehouseSectorService.getAll().subscribe(data => {
+        this.warehouseSectors = data.payload;
       });
+    }, 100 );
+    setTimeout( () => {
+      this.deliveryService.getProcessedDeliveryById(this.deliveryId)
+        .subscribe((data: Response<DeliveryInProcessView>) => {
+          console.log(data.payload.length);
+          if (data.payload[0] === null) {
+            alert('Dostawa rozłożona');
+            this.router.navigate(['deliveries']);
+          } else {
+            this.deliveryInProgress = data.payload[0];
+          }
+        });
+    }, 100 );
   }
+
+
+
 }
 

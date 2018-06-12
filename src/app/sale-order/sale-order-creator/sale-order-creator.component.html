@@ -17,7 +17,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let client of clients | filter: searchText">
+    <tr *ngFor="let client of clients | filter2: searchText">
       <td>{{client.id}}</td>
       <td>{{client.name}}</td>
       <td>{{client.company}}</td>
