@@ -58,7 +58,7 @@
           </tbody>
         </table>
         <h5>Zamawiąjący: {{saleOrder.clientId}}</h5>
-        <h5>Data zamówienia: {{saleOrder.dateOfOrder}}</h5>
+        <h5>Data zamówienia: {{saleOrder.dateOfOrder | date:'yyyy-MM-dd'}}</h5>
         <h5>Suma zamówienia: {{saleOrder.totalPrice}}</h5>
       </div>
     </div>

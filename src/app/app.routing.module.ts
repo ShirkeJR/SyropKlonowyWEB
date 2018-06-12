@@ -21,6 +21,7 @@ import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/
 import {AddSaleOrderComponent} from './sale-order/sale-order-creator/add-sale-order/add-sale-order.component';
 import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-order-creator.component';
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
@@ -43,7 +44,7 @@ const routes: Routes = [
   {path: 'clients/add', component: AddClientComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
-  {path: '', component: HeaderComponent}
+  {path: '', component: HomeComponent}
 ];
 
 @NgModule({

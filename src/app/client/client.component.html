@@ -25,7 +25,9 @@
       <td>{{client.deliveryAddress.buildingNumber}}</td>
       <td>{{client.deliveryAddress.zipCode}}</td>
       <td>{{client.enterpriseType}}</td>
-      <td></td>
+      <td>
+        <button class="btn btn-info" [routerLink]="['details', client.id]">Informacje</button>
+      </td>
       <td></td>
     </tr>
     </tbody>

@@ -21,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of deliveryInProgress.productsLeftForDelivery">
+    <tr *ngFor="let product of deliveryInProgress?.productsLeftForDelivery">
       <td>{{product.productId}}</td>
       <td>{{product.productName}}</td>
       <td>{{product.amount}}</td>

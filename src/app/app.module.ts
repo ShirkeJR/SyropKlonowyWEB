@@ -32,6 +32,7 @@ import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-or
 import {ClientOrderFilterPipe} from './sale-order/sale-order-creator/client-order-filter.pipe';
 import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {ClientDetailsComponent} from './client/client-details/client-details.com
     ProductFromOrderFilterPipe,
     SaleOrderCreatorComponent,
     ClientOrderFilterPipe,
-    ClientDetailsComponent
+    ClientDetailsComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

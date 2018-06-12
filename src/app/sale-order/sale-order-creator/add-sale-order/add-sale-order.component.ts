@@ -32,6 +32,7 @@ export class AddSaleOrderComponent implements OnInit {
     this.productService.getAll().subscribe(data => {
       this.productsFromWarehouse = data.payload;
     });
+    console.log(this.clientId);
   }
 
   addProductToSaleOrder(product: AmountOfProduct, amount: string): void {
