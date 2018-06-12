@@ -16,10 +16,16 @@ export class SaleOrderComponent implements OnInit {
   constructor(private router: Router, private saleOrderService: SaleOrderService) { }
 
   ngOnInit() {
-    this.saleOrderService.getAllBySaleOrderStatusOrSaleOrderStatus('NEW', 'PAID').subscribe(data => {
+    this.saleOrderService.getAllBySaleOrderStatus('NEW').subscribe(data => {
       console.log(data);
       this.saleOrders = data.payload;
     });
+    setTimeout( () => {
+      this.saleOrderService.getAllBySaleOrderStatus('PAID').subscribe(data => {
+        console.log(data);
+        this.saleOrders = this.saleOrders.concat(data.payload);
+      });
+    }, 100 );
   }
 
 

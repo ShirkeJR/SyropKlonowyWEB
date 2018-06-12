@@ -9,7 +9,6 @@ export class Product {
   code: string;
   quantity: string;
 
-
   constructor(name: string, price: string, category: string, productionDate: string, description: string, code: string, quantity: string) {
     this.name = name;
     this.price = price;

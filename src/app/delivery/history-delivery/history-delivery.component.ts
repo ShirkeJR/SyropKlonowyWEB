@@ -20,6 +20,4 @@ export class HistoryDeliveryComponent implements OnInit {
       this.deliveries = data.payload;
     });
   }
-
-
 }

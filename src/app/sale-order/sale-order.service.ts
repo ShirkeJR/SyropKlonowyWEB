@@ -22,10 +22,9 @@ export class SaleOrderService {
       'orderId=' + id);
   }
 
-  public getAllBySaleOrderStatusOrSaleOrderStatus(status1: String, status2: String): Observable<Response<SaleOrder>> {
-    return this.http.get<Response<SaleOrder>>(this.saleOrderUrl + 'getAllOrdersBySaleOrderStatusOrSaleOrderStatus?' +
-      'saleOrderStatus1=' + status1 +
-      '&saleOrderStatus2=' + status2);
+  public getAllBySaleOrderStatus(status: String): Observable<Response<SaleOrder>> {
+    return this.http.get<Response<SaleOrder>>(this.saleOrderUrl + 'getAllOrdersBySaleOrderStatus?' +
+      'status=' + status);
   }
 
   public addProductToOrder(clientId: string, productId: string, quantity: string): Observable<Response<SaleOrder>> {
@@ -33,5 +32,10 @@ export class SaleOrderService {
       'clientId=' + clientId +
       '&productId=' + productId +
       '&quantity=' + quantity, null);
+  }
+
+  public confirmClientOrder(clientId: string): Observable<Response<SaleOrder>>{
+    return this.http.put<Response<SaleOrder>>(this.saleOrderUrl + 'confirmClientOrder?' +
+    'clientId=' + clientId, null);
   }
 }

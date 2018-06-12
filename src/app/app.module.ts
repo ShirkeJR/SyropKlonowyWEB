@@ -27,8 +27,10 @@ import {HistorySaleOrderComponent} from './sale-order/history-sale-order/history
 import {SaleOrderService} from './sale-order/sale-order.service';
 import {SaleOrderComponent} from './sale-order/sale-order.component';
 import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
-import {AddSaleOrderComponent} from './sale-order/add-sale-order/add-sale-order.component';
-import {FilterPipe} from './sale-order/add-sale-order/filter.pipe';
+import {AddSaleOrderComponent} from './sale-order/sale-order-creator/add-sale-order/add-sale-order.component';
+import {FilterPipe} from './sale-order/sale-order-creator/add-sale-order/filter.pipe';
+import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-order-creator.component';
+import {ClientOrderFilterPipe} from './sale-order/sale-order-creator/client-order-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import {FilterPipe} from './sale-order/add-sale-order/filter.pipe';
     SaleOrderComponent,
     HistorySaleOrderDetailsComponent,
     AddSaleOrderComponent,
-    FilterPipe
+    FilterPipe,
+    SaleOrderCreatorComponent,
+    ClientOrderFilterPipe
   ],
   imports: [
     BrowserModule,

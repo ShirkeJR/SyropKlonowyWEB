@@ -10,7 +10,7 @@
       <th>Cena zamówienia</th>
       <th>Status zamówienia</th>
       <th></th>
-      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nowe zamówienie</button></th>
+      <th><button class="btn btn-primary" [routerLink]="['creator']">Dodaj nowe zamówienie</button></th>
     </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
       <td>{{saleOrder.totalPrice}}</td>
       <td>{{saleOrder.saleOrderStatus}}</td>
       <td></td>
-      <td><button class="btn btn-info" [routerLink]="['details', saleOrder.id]"> Szczegóły </button></td>
+      <td></td>
     </tr>
     </tbody>
   </table>

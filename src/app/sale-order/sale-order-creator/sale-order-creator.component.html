@@ -1,0 +1,34 @@
+<div>
+  <h2 class="text-center"> Kreator zamówienia - wybór clienta</h2>
+  <br>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nazwa</th>
+      <th>Firma</th>
+      <th>Ulica</th>
+      <th>Miasto</th>
+      <th>Numer budynku</th>
+      <th>Kod pocztowy</th>
+      <th>Typ firmy</th>
+      <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let client of clients | filter: searchText">
+      <td>{{client.id}}</td>
+      <td>{{client.name}}</td>
+      <td>{{client.company}}</td>
+      <td>{{client.deliveryAddress.street}}</td>
+      <td>{{client.deliveryAddress.city}}</td>
+      <td>{{client.deliveryAddress.buildingNumber}}</td>
+      <td>{{client.deliveryAddress.zipCode}}</td>
+      <td>{{client.enterpriseType}}</td>
+      <td><button class="btn btn-info" [routerLink]="['add', client.id]"> Stwórz zamówienie </button></td>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
