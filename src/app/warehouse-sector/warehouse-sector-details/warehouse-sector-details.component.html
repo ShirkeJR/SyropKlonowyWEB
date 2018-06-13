@@ -3,20 +3,24 @@
   <table class="table table-striped">
     <thead>
     <tr>
+      <th>#</th>
       <th>Nazwa</th>
       <th>Cena</th>
       <th>Kategoria</th>
       <th>Opis</th>
       <th>Ilość</th>
+      <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products">
-    <td>{{product.name}}</td>
-    <td>{{product.price}}</td>
-    <td>{{product.category}}</td>
-    <td>{{product.description}}</td>
-    <td>{{product.quantity}}</td>
+    <tr *ngFor="let product of products | filter5: searchText">
+      <td><strong>{{product.productId}}</strong></td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>{{product.category}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.quantity}}</td>
+      <td></td>
     </tr>
     </tbody>
   </table>

@@ -22,12 +22,14 @@ import {AddSaleOrderComponent} from './sale-order/sale-order-creator/add-sale-or
 import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-order-creator.component';
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
 import {HomeComponent} from './home/home.component';
+import {ProductDetailsComponent} from './product/product-details/product-details.component';
 
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
   {path: 'warehouseSectors/add', component: AddWarehouseSectorComponent},
   {path: 'warehouseSectors/details/:id/:name', component: WarehouseSectorDetailsComponent},
   {path: 'products', component: ProductComponent},
+  {path: 'products/details/:id', component: ProductDetailsComponent},
   {path: 'deliveries', component: DeliveryComponent},
   {path: 'deliveries/add', component: AddDeliveryComponent},
   {path: 'deliveries/history', component: HistoryDeliveryComponent},

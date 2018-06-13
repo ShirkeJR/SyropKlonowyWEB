@@ -7,21 +7,23 @@
       <th>#</th>
       <th>SektorId</th>
       <th>Nazwa</th>
+      <th>Kategoria</th>
       <th>Cena</th>
       <th>Ilość</th>
-      <th>Kategoria</th>
-      <th>Opis</th>
+      <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{product.productId}}</td>
+    <tr *ngFor="let product of products | filter4: searchText">
+      <td><strong>{{product.productId}}</strong></td>
       <td>{{product.sectorId}}</td>
       <td>{{product.name}}</td>
+      <td>{{product.category}}</td>
       <td>{{product.price}}</td>
       <td>{{product.quantity}}</td>
-      <td>{{product.category}}</td>
-      <td>{{product.description}}</td>
+      <td>
+        <button class="btn btn-info" [routerLink]="['details', product.productId]">Informacje</button>
+      </td>
     </tr>
     </tbody>
   </table>

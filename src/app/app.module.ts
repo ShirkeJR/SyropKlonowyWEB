@@ -34,6 +34,11 @@ import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
 import {HomeComponent} from './home/home.component';
 import {HomeService} from './home/home.service';
+import {ProductDetailsComponent} from './product/product-details/product-details.component';
+import {ProductFilterComponent} from './product/product-filter.component';
+import {ProductsInWarehouseFilterComponent} from './warehouse-sector/warehouse-sector-details/products-in-warehouse-filter.component';
+import {HistoryDeliveryFilterComponent} from './delivery/history-delivery/history-delivery-filter.component';
+import {ClientFilterComponent} from './client/client-filter.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import {HomeService} from './home/home.service';
     WarehouseSectorDetailsComponent,
     ProductComponent,
     DeliveryComponent,
+    HistoryDeliveryFilterComponent,
     DeliveryDetailsComponent,
     SigninComponent,
     SignupComponent,
@@ -59,8 +65,12 @@ import {HomeService} from './home/home.service';
     ProductFromOrderFilterPipe,
     SaleOrderCreatorComponent,
     ClientOrderFilterPipe,
+    ProductFilterComponent,
+    ProductsInWarehouseFilterComponent,
     ClientDetailsComponent,
     HomeComponent,
+    ProductDetailsComponent,
+    ClientFilterComponent
   ],
   imports: [
     BrowserModule,

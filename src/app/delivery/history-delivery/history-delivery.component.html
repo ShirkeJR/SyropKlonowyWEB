@@ -8,12 +8,12 @@
       <th>Data</th>
       <th>Status</th>
       <th></th>
-      <th></th>
+      <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let delivery of deliveries">
-      <td>{{delivery.id}}</td>
+    <tr *ngFor="let delivery of deliveries | filter6: searchText">
+      <td><strong>{{delivery.id}}</strong></td>
       <td>{{delivery.deliveryDate}}</td>
       <td>{{delivery.deliveryStatus}}</td>
       <td></td>

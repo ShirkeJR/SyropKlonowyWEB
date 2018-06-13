@@ -39,17 +39,16 @@ export class SaleOrderComponent implements OnInit {
 
   fetchAllSaleOrders() {
     setTimeout( () => {
-      this.saleOrderService.getAllBySaleOrderStatus('NEW').subscribe(data => {
-        console.log(data);
-        this.saleOrders = data.payload;
+      this.saleOrderService.getAllBySaleOrderStatus('NEW').subscribe(data1 => {
+        console.log(data1);
+        setTimeout( () => {
+          this.saleOrderService.getAllBySaleOrderStatus('PAID').subscribe(data2 => {
+            console.log(data2);
+            this.saleOrders = [].concat(data1.payload, data2.payload);
+          });
+        }, 100);
       });
-    }, 180);
-    setTimeout( () => {
-      this.saleOrderService.getAllBySaleOrderStatus('PAID').subscribe(data => {
-        console.log(data);
-        this.saleOrders = this.saleOrders.concat(data.payload);
-      });
-    }, 180 );
+    }, 100);
   }
 
   isItNew(saleOrder: SaleOrder){

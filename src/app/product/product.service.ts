@@ -18,7 +18,8 @@ export class ProductService {
 
   public getById(id: string): Observable<Response<ProductWithQuantityView>> {
     console.log(id);
-    return this.http.get<Response<ProductWithQuantityView>>(this.productUrl + 'getById?id=' + id);
+    return this.http.get<Response<ProductWithQuantityView>>(this.productUrl + 'getById?' +
+    'id=' + id);
   }
 
   public getByName(name: string): Observable<Response<ProductWithQuantityView>> {
