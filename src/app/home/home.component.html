@@ -1,1 +1,16 @@
-<h3> HELLO at my WAREHOUSE </h3>
+<h1> Statystyki magazynu z dnia {{date | date: 'dd-MM-yyyy'}}</h1>
+
+
+<h3>Przychód z zamówień z ostatniego miesiąca: {{incomeFromOrders?.price}}</h3>
+
+<h3>Liczba sprzedanych produktów z ostatniego miesiąca: {{numberOfProductsSoldSince?.number}}</h3>
+
+<h3>Aktywni clienci z ostatniego miesiąca: </h3>
+
+<h3 *ngFor="let client of clientsActiveSince"> {{client.name}} </h3>
+
+<h3>Liczba sektorów na magazynie: {{amountOfSectors?.number}}</h3>
+
+<h3>Liczba złożonych zamówień w ciągu miesiąca: {{numbersOfOrdersMadeSince?.number}}</h3>
+
+<h3>Liczba dostarczonych dostaw w ciągu miesiąca: {{numberOfHandledDeliveriesSince?.number}}</h3>

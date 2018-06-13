@@ -13,21 +13,20 @@ import {DeliveryInProcessView} from '../models/DeliveryInProcessView.model';
 })
 export class DeliveryComponent implements OnInit {
 
-  deliveries: Delivery[];
+  deliveries: Delivery[] = [];
 
   constructor(private router: Router, private deliveryService: DeliveryService) { }
 
   ngOnInit() {
-    this.deliveryService.getAllByDeliveryStatus('NEW').subscribe(data => {
-      console.log(data);
-      this.deliveries = data.payload;
+    this.deliveryService.getAllByDeliveryStatus('NEW').subscribe( data1 => {
+      console.log(data1);
+      setTimeout( () => {
+        this.deliveryService.getAllByDeliveryStatus('IN_PROCESS').subscribe(data2 => {
+          console.log(data2);
+          this.deliveries = [].concat(data1.payload, data2.payload);
+        });
+      }, 50 );
     });
-    setTimeout( () => {
-      this.deliveryService.getAllByDeliveryStatus('IN_PROCESS').subscribe(data => {
-        console.log(data);
-        this.deliveries = this.deliveries.concat(data.payload);
-      });
-    }, 100 );
   }
 
 

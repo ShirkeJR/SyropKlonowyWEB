@@ -33,6 +33,7 @@ import {ClientOrderFilterPipe} from './sale-order/sale-order-creator/client-orde
 import {HistorySaleOrderDetailsComponent} from './sale-order/history-sale-order/history-sale-order-details/history-sale-order-details.component';
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
 import {HomeComponent} from './home/home.component';
+import {HomeService} from './home/home.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import {HomeComponent} from './home/home.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService, SaleOrderService],
+  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService, SaleOrderService, HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
