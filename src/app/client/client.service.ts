@@ -18,8 +18,8 @@ export class ClientService {
   }
 
   public getById(id: string): Observable<Response<Client>> {
-    return this.http.get<Response<Client>>(this.clientUrl + 'getClientWithId?' +
-      'id=' + id);
+    return this.http.get<Response<Client>>(this.clientUrl + 'getClientById?' +
+      'clientId=' + id);
   }
 
   public createClient(client: Client): Observable<Response<Client>> {
@@ -31,5 +31,25 @@ export class ClientService {
       '&city=' + client.deliveryAddress.city +
       '&zipCode=' + client.deliveryAddress.zipCode +
       '&enterpriseType=' + client.enterpriseType, null);
+  }
+
+  public showAveragePrice(clientId: string): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.clientMarketingUrl + 'showAveragePrice?' +
+    'clientId=' + clientId);
+  }
+
+  public showMaxPrice(clientId: string): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.clientMarketingUrl + 'showMaxPrice?' +
+      'clientId=' + clientId);
+  }
+
+  public showMostCommonlyPurchasedProducts(clientId: string): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.clientMarketingUrl + 'showMostCommonlyPurchasedProducts?' +
+      'clientId=' + clientId);
+  }
+
+  public showPriceRange(clientId: string): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.clientMarketingUrl + 'showPriceRange?' +
+      'clientId=' + clientId);
   }
 }

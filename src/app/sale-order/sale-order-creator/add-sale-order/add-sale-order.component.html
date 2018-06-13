@@ -3,11 +3,12 @@
   <br>
   <div>
     <div class="row">
-      <div class="col-md-6 table-responsive-sm">
+      <div>
         <h3 class="text-center">Lista produktów w magazynie</h3>
-        <table class="table table-info table-hover table-bordered table-sm">
+        <table class="table table-info table-bordered table-sm">
           <thead class="table-primary">
           <tr>
+            <th>#</th>
             <th>Nazwa</th>
             <th>Cena</th>
             <th>Kategoria</th>
@@ -16,8 +17,9 @@
             <th></th>
           </tr>
           </thead>
-          <tbody class="table-sm">
+          <tbody>
           <tr *ngFor="let product of productsFromWarehouse | filter3: searchText ">
+            <td><strong>{{product.productId}}</strong></td>
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
             <td>{{product.category}}</td>
@@ -32,22 +34,19 @@
           </tbody>
         </table>
       </div>
-      <div class="col-md-1"></div>
-      <div class="col-md-5 table-responsive-sm">
+      <span>*</span>
+      <div>
         <h3 class="text-center">Lista produktów w dostawie</h3>
-        <table class="table table-success table-hover">
-          <thead class="table-primary">
+        <table class="table table-success table-sm">
+          <thead class="table-danger">
           <tr>
             <th>#</th>
             <th>Ilość</th>
-            <th>
-              <button class="btn btn-sm btn-success" [disabled]="!hasProducts()" (click)="createSaleOrder()">Stwórz dostawę
-              </button>
-            </th>
+            <th></th>
             <th></th>
           </tr>
           </thead>
-          <tbody class="table-sm">
+          <tbody>
           <tr *ngFor="let product of products">
             <td>{{product.productId}}</td>
             <td>{{product.quantity}}</td>
@@ -61,6 +60,7 @@
         <h5>Zamawiąjący: {{saleOrder.clientId}}</h5>
         <h5>Data zamówienia: {{saleOrder.dateOfOrder | date:'yyyy-MM-dd'}}</h5>
         <h5>Suma zamówienia: {{saleOrder.totalPrice}}</h5>
+        <button class="btn btn-success border-right" [disabled]="!hasProducts()" (click)="createSaleOrder()">Stwórz dostawę</button>
       </div>
     </div>
   </div>

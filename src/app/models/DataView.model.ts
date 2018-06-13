@@ -1,12 +1,5 @@
-export class Product<K, V> {
+import {DataViewValue} from './DataViewValue.model';
 
-  id: string;
-  name: string;
-  price: string;
-  category: string;
-  productionDate: string;
-  description: string;
-  code: string;
-  quantity: string;
-
+export class DataView {
+  data: DataViewValue[];
 }
