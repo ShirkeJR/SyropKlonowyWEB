@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../product.service';
-import {Client} from '../../models/Client.model';
 import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
 
 

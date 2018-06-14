@@ -35,7 +35,6 @@ export class AddDeliveryComponent implements OnInit {
       form.value.category,
       form.value.productionDate,
       form.value.description,
-      form.value.code,
       form.value.quantity);
     this.deliveryService.addProductToTemplate(product).subscribe(data => {
         if (!Boolean(data.ok).valueOf()) {

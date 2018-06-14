@@ -43,6 +43,7 @@ import {ClientFilterComponent} from './client/client-filter.component';
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
     WarehouseSectorComponent,
     AddWarehouseSectorComponent,
     WarehouseSectorDetailsComponent,

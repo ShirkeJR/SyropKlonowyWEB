@@ -12,7 +12,7 @@
           </div>
           <div class="form-group">
             <label for="price">Cena:</label>
-            <input id="price" placeholder="100PLN" name="price" ngModel class="form-control" required>
+            <input id="price" placeholder="0 PLN" name="price" ngModel class="form-control" required>
           </div>
           <div class="form-group">
             <label for="category">Kategoria:</label>
@@ -35,11 +35,7 @@
           </div>
           <div class="form-group">
             <label for="quantity">Ilość:</label>
-            <input id="quantity" placeholder="100" name="quantity" ngModel class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="code">Kod produktu:</label>
-            <input id="code" placeholder="X2325" name="code" ngModel class="form-control" required>
+            <input id="quantity" placeholder="0" name="quantity" ngModel class="form-control" required>
           </div>
           <button class="btn btn-success" type="submit" [disabled]="!f.valid">Dodaj produkt</button>
         </form>
@@ -55,7 +51,6 @@
             <th>Data</th>
             <th>Opis</th>
             <th>Ilość</th>
-            <th>Kod produktu</th>
             <th>
               <button class="btn btn-success" [disabled]="!hasProducts()" (click)="createDelivery()">Stwórz dostawę</button>
             </th>
@@ -69,7 +64,6 @@
             <td>{{product.productionDate | date:'yyyy-MM-dd'}}</td>
             <td>{{product.description}}</td>
             <td>{{product.quantity}}</td>
-            <td>{{product.code}}</td>
             <td>
               <button class="btn btn-danger" (click)="deleteProduct(product)">Usuń produkt</button>
             </td>

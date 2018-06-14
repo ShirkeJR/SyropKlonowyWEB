@@ -52,8 +52,7 @@ export class DeliveryService {
     '&category=' + product.category +
     '&productionDate=' + product.productionDate.replace('/', '%2F') +
     '&description=' + product.description +
-    '&quantity=' + product.quantity +
-    '&code=' + product.code, null);
+    '&quantity=' + product.quantity, null);
   }
 
   public placeProduct(deliveryId: string, productId: string, amount: string, sectorId: string): Observable<Response<DeliveryInProcessView>> {
