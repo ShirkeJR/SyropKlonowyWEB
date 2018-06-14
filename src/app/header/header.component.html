@@ -1,23 +1,16 @@
-<nav class="navbar navbar-dark navbar-expand-xl bg-dark navbar-dark">
+<nav class="navbar navbar-dark navbar-expand-xl bg-dark">
   <div class="navbar">
     <div class="navbar-header">
       <a routerLink="/" class="navbar-brand">Magazyn</a>
     </div>
-    <ul class="navbar-nav nav-justified">
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/warehouseSectors">Sektory magazynu </a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/products">Produkty na magazynie </a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/deliveries">Dostawy do pobrania </a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/deliveries/history">Historia dostaw </a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/clients">Klienci </a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/saleOrders">Zamówienia realizowane</a></li>
-      <li class="nav-item" routerLinkActive="active"><a routerLink="/saleOrders/history">Historia zamówień</a></li>
-    </ul>
-    <ul class="nav navbar-nav" *ngIf="false">
-      <ng-template>
-        <li><a routerLink="/signup">Register</a></li>
-        <li><a routerLink="/signin">Login</a></li>
-      </ng-template>
-      <li><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
+    <ul class="nav navbar-nav nav-justified navbar-light" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="/warehouseSectors">Sektory magazynu </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/products">Produkty na magazynie </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/deliveries">Dostawy do pobrania </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/deliveries/history">Historia dostaw </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/clients">Klienci </a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/saleOrders">Zamówienia realizowane</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/saleOrders/history">Historia zamówień</a></li>
     </ul>
   </div>
 </nav>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Response} from '../../models/Response.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DeliveryService} from '../delivery.service';
@@ -38,24 +38,29 @@ export class DeliveryDetailsComponent implements OnInit {
           .subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
       }
     });
-    setTimeout( () => {
+    setTimeout(() => {
       this.deliveryService.getProcessedDeliveryById(this.deliveryId)
         .subscribe((data: Response<DeliveryInProcessView>) => {
           this.deliveryInProgress = data.payload[0];
         });
-    }, 100 );
+    }, 100);
   }
 
   placeProduct(id: string, amount: string, sectorId: string) {
     this.deliveryService.placeProduct(this.deliveryId, id, amount, sectorId)
       .subscribe((data: Response<DeliveryInProcessView>) => {
-    });
-    setTimeout( () => {
+        if (!data.ok) {
+          alert('UWAGA!!! Brak tyle produktu, lub magazyn jest pełny');
+        } else {
+          alert('Przeniesiono produkty na magazyn');
+        }
+      });
+    setTimeout(() => {
       this.warehouseSectorService.getAll().subscribe(data => {
         this.warehouseSectors = data.payload;
       });
-    }, 100 );
-    setTimeout( () => {
+    }, 100);
+    setTimeout(() => {
       this.deliveryService.getProcessedDeliveryById(this.deliveryId)
         .subscribe((data: Response<DeliveryInProcessView>) => {
           console.log(data.payload.length);
@@ -66,10 +71,7 @@ export class DeliveryDetailsComponent implements OnInit {
             this.deliveryInProgress = data.payload[0];
           }
         });
-    }, 100 );
+    }, 100);
   }
-
-
-
 }
 

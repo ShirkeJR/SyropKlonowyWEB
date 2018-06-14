@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {ClientService} from '../client.service';
 import {Client} from '../../models/Client.model';
+import {ProductService} from '../../product/product.service';
+import {forEach} from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -20,7 +22,8 @@ export class ClientDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private clientService: ClientService) {
+              private clientService: ClientService,
+              private productService: ProductService) {
   }
 
   ngOnInit() {
@@ -74,5 +77,4 @@ export class ClientDetailsComponent implements OnInit {
       this.priceRange = data.payload[0];
     });
   }
-
 }

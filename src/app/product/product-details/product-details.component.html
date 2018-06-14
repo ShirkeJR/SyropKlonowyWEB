@@ -1,9 +1,8 @@
-<h1> Dane produktu </h1>
-
-<h3>Nazwa: {{product.name}}</h3>
-<h3>Kategoria: {{product.category}}</h3>
-<h3>Cena: {{product.price}}</h3>
-<h3>Data produkcji: {{product.productionDate}}</h3>
-<h3>Kod: {{product.code}}</h3>
-
-
+<div class="list-group">
+  <h4 class="list-group-item list-group-item-action active bg-dark"> Dane produktu </h4>
+  <a class="list-group-item list-group-item-action"><strong>Nazwa:</strong> {{product.name}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Kategoria:</strong> {{product.category}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Cena:</strong> {{product.price}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Data produkcji:</strong> {{product.productionDate}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Opis produktu:</strong> {{product.description}}</a>
+</div>

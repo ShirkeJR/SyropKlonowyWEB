@@ -1,24 +1,27 @@
-<h1> Dane clienta</h1>
-
-<h3>Nazwa: {{client?.name}}</h3>
-<h3>Firma: {{client?.company}}</h3>
-<h3>Typ firmy: {{client?.enterpriseType}}</h3>
-<h3>Adres dostawy:</h3>
-<h4>Miasto: {{client?.deliveryAddress?.city}}</h4>
-<h4>Ulica: {{client?.deliveryAddress?.street}}</h4>
-<h4>Numer budynku: {{client?.deliveryAddress?.buildingNumber}}</h4>
-<h4>Kod pocztowy: {{client?.deliveryAddress?.zipCode}}</h4>
-
-<h1> Statystyki clienta</h1>
-
-<h3> Średnie kwowy zamówień:  {{averagePrice?.data[0].value2}}</h3>
-
-<h3> Maksymalna kwota produktu: {{maxPrice?.data[0].value2}}</h3>
-
-<h3> Produkty najczęściej kupowane: </h3>
-<h3 *ngFor="let product of mostCommonlyPurchasedProducts?.data"> {{product.value1}} ilość {{product.value2}} </h3>
-
-<h3> Najmniejsza cena jaką zapłacił za zamówienie: {{priceRange?.data[0].value2}} </h3>
-
-<h3> Największa cena jaką zapłacił za zamówienie: {{priceRange?.data[1].value2}} </h3>
-
+<div class="list-group">
+  <h4 class="list-group-item list-group-item-action active bg-dark"> Dane clienta </h4>
+  <a class="list-group-item list-group-item-action"><strong>Nazwa:</strong> {{client?.name}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Firma:</strong> {{client?.company}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Typ firmy:</strong> {{client?.enterpriseType}}</a>
+  <div class="list-group-item list-group-item-action">
+    <a><strong>Adres dostawy:</strong></a>
+    <a class="list-group-item list-group-item-action">Miasto: {{client?.deliveryAddress?.city}}</a>
+    <a class="list-group-item list-group-item-action">Ulica: {{client?.deliveryAddress?.street}}</a>
+    <a class="list-group-item list-group-item-action">Numer budynku: {{client?.deliveryAddress?.buildingNumber}}</a>
+    <a class="list-group-item list-group-item-action">Kod pocztowy: {{client?.deliveryAddress?.zipCode}}</a>
+  </div>
+  <h4 class="list-group-item list-group-item-action active bg-dark">Statystyki</h4>
+  <a class="list-group-item list-group-item-action"><strong> Średnie kwowy zamówień:</strong>
+    {{averagePrice?.data[0].value2}}</a>
+  <a class="list-group-item list-group-item-action"><strong> Maksymalna kwota produktu:</strong>
+    {{maxPrice?.data[0].value2}}</a>
+  <div class="list-group-item list-group-item-action">
+    <a><strong>Produkty najczęściej kupowane:</strong></a>
+    <a class="list-group-item list-group-item-action" *ngFor="let product of mostCommonlyPurchasedProducts?.data">
+      {{product.value1}} ilość {{product.value2}} </a>
+  </div>
+  <a class="list-group-item list-group-item-action"><strong> Najmniejsza cena jaką zapłacił za zamówienie:</strong>
+    {{priceRange?.data[0].value2}}</a>
+  <a class="list-group-item list-group-item-action"><strong> Największa cena jaką zapłacił za zamówienie:</strong>
+    {{priceRange?.data[1].value2}} </a>
+</div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {SaleOrder} from '../models/SaleOrder.model';
 import {SaleOrderService} from './sale-order.service';
 
@@ -13,35 +13,40 @@ export class SaleOrderComponent implements OnInit {
 
   saleOrders: SaleOrder[];
 
-  constructor(private router: Router, private saleOrderService: SaleOrderService) { }
+  constructor(private router: Router, private saleOrderService: SaleOrderService) {
+  }
 
   ngOnInit() {
     this.fetchAllSaleOrders();
   }
 
   payForSale(saleOrder: SaleOrder) {
-    if(saleOrder.saleOrderStatus === 'NEW'){
-      this.saleOrderService.payOrderById(saleOrder.id).subscribe( data => {
-        console.log(data);
+    if (saleOrder.saleOrderStatus === 'NEW') {
+      this.saleOrderService.payOrderById(saleOrder.id).subscribe(data => {
+        if (data.ok) {
+          alert('Zapłacono za zamówienie');
+        }
       });
       this.fetchAllSaleOrders();
     }
   }
 
   sendSale(saleOrder: SaleOrder) {
-    if(saleOrder.saleOrderStatus === 'PAID'){
-      this.saleOrderService.sendOrderById(saleOrder.id).subscribe( data => {
-        console.log(data);
+    if (saleOrder.saleOrderStatus === 'PAID') {
+      this.saleOrderService.sendOrderById(saleOrder.id).subscribe(data => {
+        if (data.ok) {
+          alert('Wysłano zamówienie');
+        }
       });
       this.fetchAllSaleOrders();
     }
   }
 
   fetchAllSaleOrders() {
-    setTimeout( () => {
+    setTimeout(() => {
       this.saleOrderService.getAllBySaleOrderStatus('NEW').subscribe(data1 => {
         console.log(data1);
-        setTimeout( () => {
+        setTimeout(() => {
           this.saleOrderService.getAllBySaleOrderStatus('PAID').subscribe(data2 => {
             console.log(data2);
             this.saleOrders = [].concat(data1.payload, data2.payload);
@@ -51,11 +56,11 @@ export class SaleOrderComponent implements OnInit {
     }, 100);
   }
 
-  isItNew(saleOrder: SaleOrder){
+  isItNew(saleOrder: SaleOrder) {
     return saleOrder.saleOrderStatus === 'NEW';
   }
 
-  isItPaid(saleOrder: SaleOrder){
+  isItPaid(saleOrder: SaleOrder) {
     return saleOrder.saleOrderStatus === 'PAID';
   }
 }

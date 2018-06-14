@@ -5,14 +5,14 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th>Id</th>
+      <th>#</th>
       <th>ProductId</th>
       <th>Ilość</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let product of saleOrder?.amountsOfProducts">
-      <td>{{product.id}}</td>
+      <td><strong>{{product.id}}</strong></td>
       <td>{{product.productId}}</td>
       <td>{{product.quantity}}</td>
     </tr>

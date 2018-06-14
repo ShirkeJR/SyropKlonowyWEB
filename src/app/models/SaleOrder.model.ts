@@ -7,4 +7,9 @@ export class SaleOrder {
   amountsOfProducts: AmountOfProduct[];
   totalPrice: string;
   saleOrderStatus: string;
+
+
+  constructor(totalPrice: string) {
+    this.totalPrice = totalPrice;
+  }
 }

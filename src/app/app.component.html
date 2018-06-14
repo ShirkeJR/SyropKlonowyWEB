@@ -1,8 +1,11 @@
 <app-header (featureSelected)="onNavigate($event)"></app-header>
 <br/>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
-
-
+<footer class="footer footer-copyright bg-dark py-3 text-center text-white">
+    © 2018 Copyright: <a href="https://www.blin-enterprise.pl"> blin-enterprise.pl </a>
+</footer>
