@@ -17,11 +17,12 @@
     {{maxPrice?.data[0].value2}}</a>
   <div class="list-group-item list-group-item-action">
     <a><strong>Produkty najczęściej kupowane:</strong></a>
-    <a class="list-group-item list-group-item-action" *ngFor="let product of mostCommonlyPurchasedProducts?.data">
-      {{product.value1}} ilość {{product.value2}} </a>
+    <a class="list-group-item list-group-item-action" *ngFor="let product of mostCommonlyPurchasedProducts">
+      {{product.name}} x {{product.quantity}} </a>
   </div>
   <a class="list-group-item list-group-item-action"><strong> Najmniejsza cena jaką zapłacił za zamówienie:</strong>
     {{priceRange?.data[0].value2}}</a>
   <a class="list-group-item list-group-item-action"><strong> Największa cena jaką zapłacił za zamówienie:</strong>
     {{priceRange?.data[1].value2}} </a>
+
 </div>

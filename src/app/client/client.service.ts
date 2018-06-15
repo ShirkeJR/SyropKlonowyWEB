@@ -3,6 +3,7 @@ import { HttpClient  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../models/Response.model';
 import {Client} from '../models/Client.model';
+import {DataView} from '../models/DataView.model';
 
 
 @Injectable()

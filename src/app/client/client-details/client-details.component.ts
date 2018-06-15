@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Data, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ClientService} from '../client.service';
 import {Client} from '../../models/Client.model';
+import {DataView} from '../../models/DataView.model';
 import {ProductService} from '../../product/product.service';
-import {forEach} from '@angular/router/src/utils/collection';
+import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
+import {AmountOfProduct} from '../../models/AmountOfProduct.model';
 
 
 @Component({
@@ -17,7 +19,7 @@ export class ClientDetailsComponent implements OnInit {
   client: Client;
   averagePrice: DataView;
   maxPrice: DataView;
-  mostCommonlyPurchasedProducts: DataView;
+  mostCommonlyPurchasedProducts: ProductWithQuantityView[] = [];
   priceRange: DataView;
 
   constructor(private route: ActivatedRoute,
@@ -31,50 +33,59 @@ export class ClientDetailsComponent implements OnInit {
       this.clientId = params['id'];
       console.log(this.clientId);
       this.clientService.getById(this.clientId).subscribe(data => {
-        console.log(data);
         this.client = data.payload[0];
-        console.log(this.client);
+        this.showAveragePrice();
+        this.showMaxPrice();
+        this.showMostCommonlyPurchasedProducts();
+        this.showPriceRange();
       });
     });
-    setTimeout(() => {
-      this.showAveragePrice();
-    }, 100);
-    setTimeout(() => {
-      this.showMaxPrice();
-    }, 100);
-    setTimeout(() => {
-      this.showMostCommonlyPurchasedProducts();
-    }, 100);
-    setTimeout(() => {
-      this.showPriceRange();
-    }, 100);
   }
 
   showAveragePrice() {
     this.clientService.showAveragePrice(this.clientId).subscribe(data => {
       console.log(data);
-      this.averagePrice = data.payload[0];
+      if (!data.ok) {
+        this.averagePrice = new DataView('0');
+      } else {
+        this.averagePrice = data.payload[0];
+      }
     });
   }
 
   showMaxPrice() {
     this.clientService.showMaxPrice(this.clientId).subscribe(data => {
-      console.log(data);
-      this.maxPrice = data.payload[0];
+      if (!data.ok) {
+        this.maxPrice = new DataView('0');
+      } else {
+        this.maxPrice = data.payload[0];
+      }
     });
   }
 
   showMostCommonlyPurchasedProducts() {
     this.clientService.showMostCommonlyPurchasedProducts(this.clientId).subscribe(data => {
-      console.log(data);
-      this.mostCommonlyPurchasedProducts = data.payload[0];
+      data.payload[0].data.forEach(item => {
+        this.getProducts(item.value1, item.value2);
+      });
+    });
+  }
+
+  public getProducts(id: string, quantity: string) {
+    this.productService.getById(id).subscribe(data => {
+      const product = data.payload[0];
+      product.quantity = quantity;
+      this.mostCommonlyPurchasedProducts.push(product);
     });
   }
 
   showPriceRange() {
     this.clientService.showPriceRange(this.clientId).subscribe(data => {
-      console.log(data);
-      this.priceRange = data.payload[0];
+      if (!data.ok) {
+        this.priceRange = new DataView('0');
+      } else {
+        this.priceRange = data.payload[0];
+      }
     });
   }
 }

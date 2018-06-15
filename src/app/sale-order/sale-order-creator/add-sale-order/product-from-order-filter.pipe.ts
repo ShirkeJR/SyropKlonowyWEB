@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {ProductWithQuantityView} from '../../../models/ProductWithQuantityView.model';
-import {WarehouseSectorProductsView} from '../../../models/WarehouseSectorProductsView.model';
+import {ProductWithQuantityToSaleOrder} from '../../../models/ProductWithQuantityToSaleOrder.model';
 
 @Pipe({
   name: 'filter3'
 })
 
 export class ProductFromOrderFilterPipe implements PipeTransform {
-  transform(items: WarehouseSectorProductsView[], searchText: string): any[] {
+  transform(items: ProductWithQuantityToSaleOrder[], searchText: string): any[] {
     console.log(searchText);
     if (!items) { return []; }
     if (!searchText) { return items; }

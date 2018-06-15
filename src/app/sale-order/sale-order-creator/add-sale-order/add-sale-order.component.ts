@@ -7,6 +7,8 @@ import {AmountOfProduct} from '../../../models/AmountOfProduct.model';
 import {SaleOrder} from '../../../models/SaleOrder.model';
 import {ClientService} from '../../../client/client.service';
 import {Client} from '../../../models/Client.model';
+import {ProductWithQuantityToSaleOrder} from '../../../models/ProductWithQuantityToSaleOrder.model';
+import {ProductWithQuantityView} from '../../../models/ProductWithQuantityView.model';
 
 @Component({
   selector: 'app-add-sale-order',
@@ -17,8 +19,8 @@ import {Client} from '../../../models/Client.model';
 export class AddSaleOrderComponent implements OnInit {
 
   saleOrder: SaleOrder;
-  productsFromWarehouse: WarehouseSectorProductsView[];
-  products: AmountOfProduct[] = [];
+  productsFromWarehouse: ProductWithQuantityToSaleOrder[];
+  products: ProductWithQuantityView[] = [];
   clientId: string;
   client: Client;
 
@@ -33,24 +35,13 @@ export class AddSaleOrderComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.clientId = params['id'];
     });
-    this.productService.getAll().subscribe(data => {
-      this.productsFromWarehouse = data.payload;
+    this.productService.getAllNonReservedAmountsOfProducts().subscribe(data1 => {
+      this.productsFromWarehouse = data1.payload;
+      this.clientService.getById(this.clientId).subscribe(data2 => {
+        this.client = data2.payload[0];
+        this.getTemporaryOrderByClientId();
+      });
     });
-    setTimeout(() => {
-      this.clientService.getById(this.clientId).subscribe(data => {
-        this.client = data.payload[0];
-      });
-    }, 100);
-    setTimeout(() => {
-      this.saleOrderService.getTemporaryOrderByClientId(this.clientId).subscribe(data => {
-        if (data.ok) {
-          this.saleOrder = data.payload[0];
-          this.products = data.payload[0].amountsOfProducts;
-        } else {
-          this.saleOrder = new SaleOrder('0 PLN');
-        }
-      });
-    }, 100);
   }
 
   addProductToSaleOrder(product: WarehouseSectorProductsView, amount: string): void {
@@ -58,14 +49,10 @@ export class AddSaleOrderComponent implements OnInit {
       .subscribe(data => {
         if (!data.ok) {
           alert('UWAGA!!! Brak takiej ilości produktu');
+        } else {
+          this.getTemporaryOrderByClientId();
         }
       });
-    setTimeout(() => {
-      this.saleOrderService.getTemporaryOrderByClientId(this.clientId).subscribe(data => {
-        this.saleOrder = data.payload[0];
-        this.products = data.payload[0].amountsOfProducts;
-      });
-    }, 100);
   }
 
   createSaleOrder(): void {
@@ -78,18 +65,44 @@ export class AddSaleOrderComponent implements OnInit {
     }
   }
 
-
-  deleteProduct(product: AmountOfProduct): void {
-    console.log(this.clientId);
-    this.saleOrderService.removeProduct(this.clientId, product.productId, product.quantity).subscribe(data => {
-      console.log(data);
-    });
-    setTimeout(() => {
-      this.saleOrderService.getTemporaryOrderByClientId(this.clientId).subscribe(data => {
+  getTemporaryOrderByClientId() {
+    this.saleOrderService.getTemporaryOrderByClientId(this.clientId).subscribe(data => {
+      if (data.ok) {
         this.saleOrder = data.payload[0];
-        this.products = data.payload[0].amountsOfProducts;
-      });
-    }, 100);
+        this.products = [];
+        data.payload[0].amountsOfProducts.forEach(item => {
+          this.getProducts(item);
+        });
+      } else {
+        this.saleOrder = new SaleOrder('', this.client.id, '', [], '0 PLN', '');
+      }
+    });
+  }
+
+  deleteProduct(product: ProductWithQuantityView, amount: string): void {
+    console.log(this.clientId);
+    this.saleOrderService.removeProduct(this.clientId, product.id, amount).subscribe(data => {
+      if (!data.ok) {
+        alert('Zła liczba produktów do usunięcia');
+      } else {
+        console.log(data);
+        this.getTemporaryOrderByClientId();
+      }
+
+    });
+  }
+
+  public getProducts(item: AmountOfProduct) {
+    this.productService.getById(item.productId).subscribe(data => {
+      const product = data.payload[0];
+      product.quantity = item.quantity;
+      this.products.push(product);
+    });
+  }
+
+  getTotalPrice(priceText: string, quantityText: string) {
+    priceText = priceText.split(' ')[0];
+    return (parseFloat(priceText) * parseFloat(quantityText)).toFixed(2) + ' PLN';
   }
 
   hasProducts(): boolean {

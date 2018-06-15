@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Response } from '../models/Response.model';
 import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
 import {ProductWithQuantityView} from '../models/ProductWithQuantityView.model';
+import {ProductWithQuantityToSaleOrder} from '../models/ProductWithQuantityToSaleOrder.model';
 
 @Injectable()
 export class ProductService {
@@ -16,8 +17,11 @@ export class ProductService {
     return this.http.get<Response<WarehouseSectorProductsView>>(this.productUrl + 'getAll');
   }
 
+  public getAllNonReservedAmountsOfProducts(): Observable<Response<ProductWithQuantityToSaleOrder>> {
+    return this.http.get<Response<ProductWithQuantityToSaleOrder>>(this.productUrl + 'getAllNonReservedAmountsOfProducts');
+  }
+
   public getById(id: string): Observable<Response<ProductWithQuantityView>> {
-    console.log(id);
     return this.http.get<Response<ProductWithQuantityView>>(this.productUrl + 'getById?' +
     'id=' + id);
   }

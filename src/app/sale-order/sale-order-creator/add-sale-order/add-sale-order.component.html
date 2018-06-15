@@ -2,66 +2,74 @@
   <h2 class="text-center">Kreator zamówienia - dodawanie produktów</h2>
   <br>
   <div>
-    <div class="row">
+    <div class="container">
       <div>
-        <h3 class="text-center">Lista produktów w magazynie</h3>
-        <table class="table table-info table-bordered table-sm">
-          <thead class="table-primary">
-          <tr>
-            <th>#</th>
-            <th>Nazwa</th>
-            <th>Cena</th>
-            <th>Kategoria</th>
-            <th>Ilość</th>
-            <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let product of productsFromWarehouse | filter3: searchText ">
-            <td><strong>{{product.productId}}</strong></td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.quantity}}</td>
-            <td>
-              <input name="amount" ngModel required #amount="ngModel" placeholder="0">
-            </td>
-            <td>
-              <button class="btn btn-info" (click)="addProductToSaleOrder(product, amount.value)">--Dodaj--</button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <span>*</span>
-      <div>
-        <h3 class="text-center">Lista produktów w zamówieniu</h3>
-        <table class="table table-success table-sm">
+        <h4 class="text-center"><strong>Lista produktów w zamówieniu</strong></h4>
+        <table class="table table-success table-bordered table-sm">
           <thead class="table-danger">
           <tr>
-            <th>#</th>
-            <th>Ilość</th>
-            <th></th>
-            <th></th>
+            <th class="text-center">#</th>
+            <th class="text-center">Nazwa</th>
+            <th class="text-center">Ilość</th>
+            <th class="text-center">Cena</th>
+            <th class="text-center">Do usunięcia</th>
+            <th class="text-center">
+              <button class="btn btn-success border-right" [disabled]="!hasProducts()" (click)="createSaleOrder()">
+                Stwórz zamówienie
+              </button>
+            </th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let product of products">
-            <td>{{product.productId}}</td>
-            <td>{{product.quantity}}</td>
-            <td></td>
-            <td>
-              <button class="btn btn-danger" (click)="deleteProduct(product)">Usuń produkt</button>
+            <td class="text-center">{{product?.id}}</td>
+            <td class="text-center">{{product?.name}}</td>
+            <td class="text-center">{{product?.quantity}}</td>
+            <td class="text-center">{{getTotalPrice(product.price, product.quantity)}}</td>
+            <td class="text-center">
+              <input name="amountDel" ngModel required #amountDel="ngModel" placeholder="0">
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-danger" (click)="deleteProduct(product, amountDel.value)">Usuń</button>
             </td>
           </tr>
           </tbody>
         </table>
-        <h5>Zamawiąjący: {{client.name}}</h5>
-        <h5>Suma zamówienia: {{saleOrder.totalPrice}}</h5>
-        <button class="btn btn-success border-right" [disabled]="!hasProducts()" (click)="createSaleOrder()">Stwórz
-          zamówienie
-        </button>
+        <div class="list-group">
+          <a><strong>Zamawiąjący:</strong> {{client.name}}</a>
+          <a><strong>Suma zamówienia:</strong> {{saleOrder.totalPrice}}</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-center"><strong>Lista produktów w magazynie</strong></h4>
+        <table class="table table-info table-bordered table-sm">
+          <thead class="table-primary">
+          <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Nazwa</th>
+            <th class="text-center">Cena</th>
+            <th class="text-center">Kategoria</th>
+            <th class="text-center">Ilość</th>
+            <th class="text-center">Do dodania</th>
+            <th class="text-center"><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of productsFromWarehouse | filter3: searchText ">
+            <td class="text-center"><strong>{{product.productId}}</strong></td>
+            <td class="text-center">{{product?.name}}</td>
+            <td class="text-center">{{product?.price}}</td>
+            <td class="text-center">{{product?.category}}</td>
+            <td class="text-center">{{product?.quantity}}</td>
+            <td class="text-center">
+              <input name="amount" ngModel required #amount="ngModel" placeholder="0">
+            </td>
+            <td class="text-center">
+              <button class="btn btn-sm btn-info" (click)="addProductToSaleOrder(product, amount.value)">Dodaj</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
