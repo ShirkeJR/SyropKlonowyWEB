@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {ProductService} from './product.service';
 import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
 import {Category} from '../models/Category.model';
+import {ProductWithQuantityToSaleOrder} from '../models/ProductWithQuantityToSaleOrder.model';
 
 
 @Component({
@@ -12,12 +13,12 @@ import {Category} from '../models/Category.model';
 })
 export class ProductComponent implements OnInit {
 
-  products: WarehouseSectorProductsView[];
+  products: ProductWithQuantityToSaleOrder[];
 
   constructor(private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.getAll().subscribe(data => {
+    this.productService.getAllNonReservedAmountsOfProducts().subscribe(data => {
       this.products = data.payload;
     });
   }
