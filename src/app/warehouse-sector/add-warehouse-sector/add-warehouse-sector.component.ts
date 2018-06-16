@@ -1,9 +1,8 @@
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { WarehouseSector } from '../../models/WarehouseSector.model';
-import { WarehouseSectorService } from '../warehouse-sector.service';
+import {WarehouseSector} from '../../models/WarehouseSector.model';
+import {WarehouseSectorService} from '../warehouse-sector.service';
 
 @Component({
   templateUrl: './add-warehouse-sector.component.html',
@@ -20,8 +19,12 @@ export class AddWarehouseSectorComponent {
     console.log(this.warehouseSector);
     this.warehouseSectorService.save(this.warehouseSector.name, this.warehouseSector.maxAmountOfProducts)
       .subscribe(data => {
-        this.router.navigate(['warehouseSectors']);
-        alert('Sektor został utworzony');
+        if (!data.ok) {
+          alert('Trzeba podać nazwę, oraz pojemność sektora');
+        } else {
+          this.router.navigate(['warehouseSectors']);
+          alert('Sektor został utworzony');
+        }
       });
   }
 }

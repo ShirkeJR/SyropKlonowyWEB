@@ -2,7 +2,7 @@
   <h3 class="list-group-item list-group-item-action active bg-dark">  Statystyki magazynu z dnia {{date | date: 'dd-MM-yyyy'}} </h3>
   <a class="list-group-item list-group-item-action"><strong>Przychód z zamówień z ostatniego miesiąca:</strong> {{incomeFromOrders?.price}}</a>
   <a class="list-group-item list-group-item-action"><strong>Liczba sprzedanych produktów z ostatniego miesiąca:</strong> {{numberOfProductsSoldSince?.number}}</a>
-  <a class="list-group-item list-group-item-action"><strong>Aktywni clienci z ostatniego miesiąca:</strong> {{clientsActiveSince?.length}} </a>
+  <a class="list-group-item list-group-item-action"><strong>Aktywni clienci z ostatniego miesiąca:</strong> {{clientsActiveSince?.number}} </a>
   <a class="list-group-item list-group-item-action"><strong>Liczba sektorów na magazynie:</strong> {{amountOfSectors?.number}}</a>
   <a class="list-group-item list-group-item-action"><strong>Liczba złożonych zamówień w ciągu miesiąca:</strong> {{numbersOfOrdersMadeSince?.number}}</a>
   <a class="list-group-item list-group-item-action"><strong>Liczba dostarczonych dostaw w ciągu miesiąca:</strong> {{numberOfHandledDeliveriesSince?.number}}</a>

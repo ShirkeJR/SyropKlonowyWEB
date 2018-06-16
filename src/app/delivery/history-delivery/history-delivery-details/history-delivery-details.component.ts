@@ -3,6 +3,7 @@ import {DeliveryService} from '../../delivery.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Delivery} from '../../../models/Delivery.model';
 import {Response} from '../../../models/Response.model';
+import {Category} from '../../../models/Category.model';
 
 @Component({
   selector: 'app-history-delivery-details',
@@ -32,7 +33,10 @@ export class HistoryDeliveryDetailsComponent implements OnInit {
           this.delivery = data.payload[0];
         });
     }, 100 );
+  }
 
+  getCategory(category: string) {
+    return Category[category];
   }
 
 }

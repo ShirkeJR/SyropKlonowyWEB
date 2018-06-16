@@ -19,7 +19,7 @@
       <td>{{saleOrder.clientId}}</td>
       <td>{{saleOrder.dateOfOrder}}</td>
       <td>{{saleOrder.totalPrice}}</td>
-      <td>{{saleOrder.saleOrderStatus}}</td>
+      <td>{{getSaleOrderStatus(saleOrder.saleOrderStatus)}}</td>
       <td></td>
       <td>
         <div *ngIf="isItNew(saleOrder)">

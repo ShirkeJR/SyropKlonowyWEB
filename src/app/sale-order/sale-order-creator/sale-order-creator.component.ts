@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Client} from '../../models/Client.model';
 import {ClientService} from '../../client/client.service';
+import {EnterpriseType} from '../../models/EnterpriseType.model';
 
 
 @Component({
@@ -21,4 +22,7 @@ export class SaleOrderCreatorComponent implements OnInit {
     });
   }
 
+  getEnterpriseType(enterprise: string) {
+    return EnterpriseType[enterprise];
+  }
 }

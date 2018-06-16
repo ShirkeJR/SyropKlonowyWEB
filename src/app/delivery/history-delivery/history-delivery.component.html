@@ -15,7 +15,7 @@
     <tr *ngFor="let delivery of deliveries | filter6: searchText">
       <td><strong>{{delivery.id}}</strong></td>
       <td>{{delivery.deliveryDate}}</td>
-      <td>{{delivery.deliveryStatus}}</td>
+      <td>{{getDeliveryStatus(delivery.deliveryStatus)}}</td>
       <td></td>
       <td><button class="btn btn-info" [routerLink]="['details', delivery.id]"> Szczegóły </button></td>
     </tr>

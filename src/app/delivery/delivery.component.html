@@ -15,7 +15,7 @@
     <tr *ngFor="let delivery of deliveries">
       <td><strong>{{delivery.id}}</strong></td>
       <td>{{delivery.deliveryDate}}</td>
-      <td>{{delivery.deliveryStatus}}</td>
+      <td>{{getDeliveryStatus(delivery.deliveryStatus)}}</td>
       <td></td>
       <td><button class="btn btn-info" [routerLink]="['details', delivery.id, delivery.deliveryStatus]"> Rozkładaj </button></td>
     </tr>

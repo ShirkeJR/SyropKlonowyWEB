@@ -10,16 +10,16 @@
       <th>Cena zamówienia</th>
       <th>Status zamówienia</th>
       <th></th>
-      <th></th>
+      <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let saleOrder of saleOrders">
+    <tr *ngFor="let saleOrder of saleOrders | filter11: searchText ">
       <td><strong>{{saleOrder.id}}</strong></td>
       <td>{{saleOrder.clientId}}</td>
       <td>{{saleOrder.dateOfOrder}}</td>
       <td>{{saleOrder.totalPrice}}</td>
-      <td>{{saleOrder.saleOrderStatus}}</td>
+      <td>{{getSaleOrderStatus(saleOrder.saleOrderStatus)}}</td>
       <td></td>
       <td><button class="btn btn-info" [routerLink]="['details', saleOrder.id]"> Szczegóły </button></td>
     </tr>

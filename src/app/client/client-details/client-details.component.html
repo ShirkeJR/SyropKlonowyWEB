@@ -2,7 +2,7 @@
   <h4 class="list-group-item list-group-item-action active bg-dark"> Dane clienta </h4>
   <a class="list-group-item list-group-item-action"><strong>Nazwa:</strong> {{client?.name}}</a>
   <a class="list-group-item list-group-item-action"><strong>Firma:</strong> {{client?.company}}</a>
-  <a class="list-group-item list-group-item-action"><strong>Typ firmy:</strong> {{client?.enterpriseType}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Typ firmy:</strong> {{getEnterpriseType(client?.enterpriseType)}}</a>
   <div class="list-group-item list-group-item-action">
     <a><strong>Adres dostawy:</strong></a>
     <a class="list-group-item list-group-item-action">Miasto: {{client?.deliveryAddress?.city}}</a>
@@ -11,18 +11,16 @@
     <a class="list-group-item list-group-item-action">Kod pocztowy: {{client?.deliveryAddress?.zipCode}}</a>
   </div>
   <h4 class="list-group-item list-group-item-action active bg-dark">Statystyki</h4>
-  <a class="list-group-item list-group-item-action"><strong> Średnie kwowy zamówień:</strong>
+  <a class="list-group-item list-group-item-action"><strong> Średnie kwowy zamówień: </strong>
     {{averagePrice?.data[0].value2}}</a>
-  <a class="list-group-item list-group-item-action"><strong> Maksymalna kwota produktu:</strong>
+  <a class="list-group-item list-group-item-action"><strong> Maksymalna kwota produktu: </strong>
     {{maxPrice?.data[0].value2}}</a>
-  <div class="list-group-item list-group-item-action">
-    <a><strong>Produkty najczęściej kupowane:</strong></a>
-    <a class="list-group-item list-group-item-action" *ngFor="let product of mostCommonlyPurchasedProducts">
-      {{product.name}} x {{product.quantity}} </a>
-  </div>
-  <a class="list-group-item list-group-item-action"><strong> Najmniejsza cena jaką zapłacił za zamówienie:</strong>
+  <a class="list-group-item list-group-item-action"><strong> Produkty najczęściej kupowane: </strong>
+    <span *ngFor="let item of mostCommonlyPurchasedProducts; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+  </a>
+  <a class="list-group-item list-group-item-action"><strong> Najmniejsza cena jaką zapłacił za zamówienie: </strong>
     {{priceRange?.data[0].value2}}</a>
-  <a class="list-group-item list-group-item-action"><strong> Największa cena jaką zapłacił za zamówienie:</strong>
+  <a class="list-group-item list-group-item-action"><strong> Największa cena jaką zapłacił za zamówienie: </strong>
     {{priceRange?.data[1].value2}} </a>
-
 </div>
+

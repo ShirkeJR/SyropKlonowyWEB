@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DeliveryService} from '../delivery.service';
 import {NgForm} from '@angular/forms';
 import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
+import {Category} from '../../models/Category.model';
 
 @Component({
   selector: 'app-add-delivery',
@@ -13,6 +14,7 @@ import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.mode
 export class AddDeliveryComponent implements OnInit {
 
   products: ProductWithQuantityView[] = [];
+  categories: string[] = ['Telewizor', 'PC', 'Laptop', 'Sprzęt audio', 'Głośnik', 'Telefon'];
 
   constructor(private route: ActivatedRoute, private router: Router, private deliveryService: DeliveryService) {
   }
@@ -22,29 +24,27 @@ export class AddDeliveryComponent implements OnInit {
   }
 
   getProductsFromTemplate() {
-    this.deliveryService.getCurrentTemplate().subscribe( data => {
+    this.deliveryService.getCurrentTemplate().subscribe(data => {
       this.products = data.payload[0].listOfProducts;
     });
   }
 
   addProductToDelivery(form: NgForm): void {
-    console.log(form.value.name);
+    this.getTrueCategory(form.value.category);
     const product = new ProductWithQuantityView(
       form.value.name,
       form.value.price,
-      form.value.category,
+      this.getTrueCategory(form.value.category),
       form.value.productionDate,
       form.value.description,
       form.value.quantity);
     this.deliveryService.addProductToTemplate(product).subscribe(data => {
-        if (!Boolean(data.ok).valueOf()) {
-          alert('Nie poprawny product');
-        }
-        console.log(data.ok);
-    });
-    setTimeout( () => {
+      if (!Boolean(data.ok).valueOf()) {
+        alert('Nie poprawny product');
+      }
+      console.log(data.ok);
       this.getProductsFromTemplate();
-    }, 100 );
+    });
   }
 
   createDelivery(): void {
@@ -57,17 +57,43 @@ export class AddDeliveryComponent implements OnInit {
     }
   }
 
-  deleteProduct(product: ProductWithQuantityView): void {
-    this.deliveryService.removeProduct(product.name, product.quantity).subscribe( data => {
+  deleteProduct(product: ProductWithQuantityView, quantity: string): void {
+    this.deliveryService.removeProduct(product.name, quantity).subscribe(data => {
       console.log(data);
+      if (!data.ok) {
+        alert('Zła ilość do usunięcia');
+      } else {
+        this.getProductsFromTemplate();
+      }
     });
-    setTimeout( () => {
-      this.getProductsFromTemplate();
-    }, 100 );
   }
 
   hasProducts(): boolean {
     return this.products.length > 0;
   }
+
+  getCategory(category: string) {
+    return Category[category];
+  }
+
+  getTrueCategory(category: string) {
+    switch (category) {
+      case 'Sprzęt audio':
+        return 'AUDIO';
+      case 'Telewizor':
+        return 'TV';
+      case 'Telefon':
+        return 'PHONE';
+      case 'Laptop':
+        return 'COMPUTER_LAPTOP';
+      case 'PC':
+        return 'COMPUTER_PC';
+      case 'Głośnik':
+        return 'SPEAKER';
+      default:
+        return 'unknown';
+    }
+  }
 }
+
 

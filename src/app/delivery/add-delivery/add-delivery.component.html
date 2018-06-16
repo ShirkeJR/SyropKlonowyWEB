@@ -17,12 +17,7 @@
           <div class="form-group">
             <label for="category">Kategoria:</label>
             <select id="category" name="category" ngModel class="form-control" required>
-              <option>COMPUTER_PC</option>
-              <option>COMPUTER_LAPTOP</option>
-              <option>PHONE</option>
-              <option>AUDIO</option>
-              <option>TV</option>
-              <option>SPEAKER</option>
+              <option *ngFor="let cat of categories">{{cat}}</option>
             </select>
           </div>
           <div class="form-group">
@@ -45,27 +40,31 @@
         <table class="table table-warning table-bordered table-sm">
           <thead class="table-primary">
           <tr>
-            <th>Nazwa</th>
-            <th>Cena</th>
-            <th>Kategoria</th>
-            <th>Data</th>
-            <th>Opis</th>
-            <th>Ilość</th>
-            <th>
+            <th class="text-center">Nazwa</th>
+            <th class="text-center">Cena</th>
+            <th class="text-center">Kategoria</th>
+            <th class="text-center">Data</th>
+            <th class="text-center">Opis</th>
+            <th class="text-center">Ilość</th>
+            <th class="text-center">Do usunięcia</th>
+            <th class="text-center">
               <button class="btn btn-success" [disabled]="!hasProducts()" (click)="createDelivery()">Stwórz dostawę</button>
             </th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let product of products">
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.productionDate | date:'yyyy-MM-dd'}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.quantity}}</td>
-            <td>
-              <button class="btn btn-danger" (click)="deleteProduct(product)">Usuń produkt</button>
+            <td class="text-center">{{product.name}}</td>
+            <td class="text-center">{{product.price}}</td>
+            <td class="text-center">{{getCategory(product.category)}}</td>
+            <td class="text-center">{{product.productionDate | date:'yyyy-MM-dd'}}</td>
+            <td class="text-center">{{product.description}}</td>
+            <td class="text-center">{{product.quantity}}</td>
+            <td class="text-center">
+              <input name="amountDel" ngModel required #amountDel="ngModel" placeholder="0">
+            </td>
+            <td class="text-center">
+              <button class="btn btn-danger btn-sm" (click)="deleteProduct(product, amountDel.value)">Usuń produkt</button>
             </td>
           </tr>
           </tbody>

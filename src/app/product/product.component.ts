@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {ProductService} from './product.service';
 import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
+import {Category} from '../models/Category.model';
 
 
 @Component({
@@ -19,5 +20,9 @@ export class ProductComponent implements OnInit {
     this.productService.getAll().subscribe(data => {
       this.products = data.payload;
     });
+  }
+
+  getCategory(category: string) {
+    return Category[category];
   }
 }

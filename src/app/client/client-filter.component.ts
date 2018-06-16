@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {Client} from '../models/Client.model';
+import {EnterpriseType} from '../models/EnterpriseType.model';
 
 @Pipe({
   name: 'filter7'
@@ -15,7 +16,7 @@ export class ClientFilterComponent implements PipeTransform {
       return it.name.toLowerCase().includes(searchText) ||
        it.id.toString().includes(searchText) ||
        it.company.toLowerCase().includes(searchText) ||
-       it.enterpriseType.toLowerCase().includes(searchText) ||
+       EnterpriseType[it.enterpriseType].toLowerCase().includes(searchText) ||
        it.deliveryAddress.city.toLowerCase().includes(searchText) ||
        it.deliveryAddress.buildingNumber.toString().includes(searchText) ||
        it.deliveryAddress.zipCode.toString().includes(searchText) ||

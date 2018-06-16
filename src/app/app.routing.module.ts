@@ -9,7 +9,6 @@ import {DeliveryComponent} from './delivery/delivery.component';
 import {DeliveryDetailsComponent} from './delivery/delivery-details/delivery-details.component';
 import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
-import {HeaderComponent} from './header/header.component';
 import {AddDeliveryComponent} from './delivery/add-delivery/add-delivery.component';
 import {ClientComponent} from './client/client.component';
 import {AddClientComponent} from './client/add-client/add-client.component';

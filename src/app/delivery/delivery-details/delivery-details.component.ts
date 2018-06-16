@@ -25,25 +25,21 @@ export class DeliveryDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.warehouseSectorService.getAll().subscribe(data => {
-      this.warehouseSectors = data.payload;
-    });
     this.route.params.subscribe(params => {
       this.deliveryId = params['id'];
       console.log(this.deliveryId);
       const status = params['status'];
       console.log(status);
       if (status === 'NEW') {
-        this.deliveryService.startDelivery(this.deliveryId)
-          .subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
+        this.deliveryService.startDelivery(this.deliveryId).subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
       }
     });
-    setTimeout(() => {
-      this.deliveryService.getProcessedDeliveryById(this.deliveryId)
-        .subscribe((data: Response<DeliveryInProcessView>) => {
-          this.deliveryInProgress = data.payload[0];
-        });
-    }, 100);
+    this.warehouseSectorService.getAll().subscribe(data1 => {
+      this.warehouseSectors = data1.payload;
+      this.deliveryService.getProcessedDeliveryById(this.deliveryId).subscribe((data2: Response<DeliveryInProcessView>) => {
+        this.deliveryInProgress = data2.payload[0];
+      });
+    });
   }
 
   placeProduct(id: string, amount: string, sectorId: string) {

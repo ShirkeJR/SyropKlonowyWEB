@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {ProductWithQuantityToSaleOrder} from '../../../models/ProductWithQuantityToSaleOrder.model';
+import {Category} from '../../../models/Category.model';
 
 @Pipe({
   name: 'filter3'
@@ -16,7 +17,7 @@ export class ProductFromOrderFilterPipe implements PipeTransform {
         it.productId.toString().includes(searchText) ||
         it.price.toString().includes(searchText) ||
         it.description.toLowerCase().includes(searchText) ||
-        it.category.toLowerCase().includes(searchText);
+        Category[it.category].toLowerCase().includes(searchText);
     });
   }
 }

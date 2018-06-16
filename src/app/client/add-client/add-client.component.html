@@ -1,5 +1,5 @@
 <div>
-  <h2 class="text-center">Kreator nowego clienta</h2>
+  <h2 class="text-center">Kreator nowego klienta</h2>
   <div class="container">
     <form (ngSubmit)="addClient(f)" #f="ngForm">
       <div class="form-group">
@@ -29,11 +29,7 @@
       <div class="form-group">
         <label for="enterpriseType">Typ firmy:</label>
         <select id="enterpriseType" name="enterpriseType" ngModel class="form-control" required>
-          <option>SHOP</option>
-          <option>PRIVATE_PERSON</option>
-          <option>WHOLESALE</option>
-          <option>SMALL_ENTERPRISE</option>
-          <option>LARGE_ENTERPRISE</option>
+          <option *ngFor="let ent of enterprises">{{ent}}</option>
         </select>
       </div>
       <button class="btn btn-success" type="submit" [disabled]="!f.valid">Create</button>

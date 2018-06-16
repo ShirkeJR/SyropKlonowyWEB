@@ -6,6 +6,7 @@ import {DataView} from '../../models/DataView.model';
 import {ProductService} from '../../product/product.service';
 import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
 import {AmountOfProduct} from '../../models/AmountOfProduct.model';
+import {EnterpriseType} from '../../models/EnterpriseType.model';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class ClientDetailsComponent implements OnInit {
   client: Client;
   averagePrice: DataView;
   maxPrice: DataView;
-  mostCommonlyPurchasedProducts: ProductWithQuantityView[] = [];
+  mostCommonlyPurchasedProducts: string[] = [];
   priceRange: DataView;
 
   constructor(private route: ActivatedRoute,
@@ -49,6 +50,7 @@ export class ClientDetailsComponent implements OnInit {
         this.averagePrice = new DataView('0');
       } else {
         this.averagePrice = data.payload[0];
+        this.averagePrice.data[0].value2 = parseFloat(this.averagePrice.data[0].value2.split(' ')[0]).toFixed(2).toString() + ' PLN';
       }
     });
   }
@@ -65,9 +67,17 @@ export class ClientDetailsComponent implements OnInit {
 
   showMostCommonlyPurchasedProducts() {
     this.clientService.showMostCommonlyPurchasedProducts(this.clientId).subscribe(data => {
-      data.payload[0].data.forEach(item => {
-        this.getProducts(item.value1, item.value2);
-      });
+      console.log(data);
+      if (!data.ok) {
+        this.mostCommonlyPurchasedProducts.push('brak');
+      } else {
+        data.payload[0].data.forEach(item => {
+          this.getProducts(item.value1, item.value2);
+        });
+        if (data.payload[0].data.length === 0) {
+          this.mostCommonlyPurchasedProducts.push('brak');
+        }
+      }
     });
   }
 
@@ -75,7 +85,7 @@ export class ClientDetailsComponent implements OnInit {
     this.productService.getById(id).subscribe(data => {
       const product = data.payload[0];
       product.quantity = quantity;
-      this.mostCommonlyPurchasedProducts.push(product);
+      this.mostCommonlyPurchasedProducts.push(product.name + ' x ' + product.quantity);
     });
   }
 
@@ -87,5 +97,9 @@ export class ClientDetailsComponent implements OnInit {
         this.priceRange = data.payload[0];
       }
     });
+  }
+
+  getEnterpriseType(enterprise: string) {
+    return EnterpriseType[enterprise];
   }
 }

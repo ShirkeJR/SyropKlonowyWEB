@@ -9,6 +9,7 @@ import {ClientService} from '../../../client/client.service';
 import {Client} from '../../../models/Client.model';
 import {ProductWithQuantityToSaleOrder} from '../../../models/ProductWithQuantityToSaleOrder.model';
 import {ProductWithQuantityView} from '../../../models/ProductWithQuantityView.model';
+import {Category} from '../../../models/Category.model';
 
 @Component({
   selector: 'app-add-sale-order',
@@ -107,6 +108,10 @@ export class AddSaleOrderComponent implements OnInit {
 
   hasProducts(): boolean {
     return this.products.length > 0;
+  }
+
+  getCategory(category: string) {
+    return Category[category];
   }
 }
 

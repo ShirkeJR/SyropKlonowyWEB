@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {WarehouseSectorProductsView} from '../models/WarehouseSectorProductsView.model';
+import {Category} from '../models/Category.model';
 
 @Pipe({
   name: 'filter4'
@@ -17,7 +18,7 @@ export class ProductFilterComponent implements PipeTransform {
         it.price.toString().includes(searchText) ||
         it.quantity.toString().includes(searchText) ||
         it.description.toLowerCase().includes(searchText) ||
-        it.category.toLowerCase().includes(searchText);
+        Category[it.category].toLowerCase().includes(searchText);
     });
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../product.service';
 import {ProductWithQuantityView} from '../../models/ProductWithQuantityView.model';
+import {Category} from '../../models/Category.model';
 
 
 @Component({
@@ -26,5 +27,9 @@ export class ProductDetailsComponent implements OnInit {
         this.product = data.payload[0];
       });
     });
+  }
+
+  getCategory(category: string) {
+    return Category[category];
   }
 }

@@ -59,7 +59,7 @@
             <td class="text-center"><strong>{{product.productId}}</strong></td>
             <td class="text-center">{{product?.name}}</td>
             <td class="text-center">{{product?.price}}</td>
-            <td class="text-center">{{product?.category}}</td>
+            <td class="text-center">{{getCategory(product?.category)}}</td>
             <td class="text-center">{{product?.quantity}}</td>
             <td class="text-center">
               <input name="amount" ngModel required #amount="ngModel" placeholder="0">

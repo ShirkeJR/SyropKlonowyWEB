@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {HomeService} from './home.service';
 import {PriceView} from '../models/PriceView.model';
 import {NumberView} from '../models/NumberView.model';
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   dateNow: string = this.date.getDate() + '%2F' + this.date.getMonth() + '%2F' + this.date.getFullYear();
   incomeFromOrders: PriceView;
   numberOfProductsSoldSince: NumberView;
-  clientsActiveSince: Client[];
+  clientsActiveSince: NumberView;
   amountOfSectors: NumberView;
   numbersOfOrdersMadeSince: NumberView;
   numberOfHandledDeliveriesSince: NumberView;
@@ -26,28 +26,22 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getTotalIncomeFromOrdersSince();
-    setTimeout(() => {
-      this.getNumberOfProductsSoldSince();
-    }, 100);
-    setTimeout(() => {
-      this.getClientsActiveSince();
-    }, 100);
-    setTimeout(() => {
-      this.getAmountOfSectors();
-    }, 100);
-    setTimeout(() => {
-      this.getNumbersOfOrdersMadeSince();
-    }, 100);
-    setTimeout(() => {
-      this.getNumberOfHandledDeliveriesSince();
-    }, 100);
+    this.getNumberOfProductsSoldSince();
+    this.getClientsActiveSince();
+    this.getAmountOfSectors();
+    this.getNumbersOfOrdersMadeSince();
+    this.getNumberOfHandledDeliveriesSince();
   }
 
   getTotalIncomeFromOrdersSince() {
     this.homeService.getTotalIncomeFromOrdersSince(this.dateNow)
       .subscribe(data => {
         console.log(data);
-        this.incomeFromOrders = data.payload[0];
+        if (!data.ok) {
+          this.incomeFromOrders = new PriceView('0 PLN');
+        } else {
+          this.incomeFromOrders = data.payload[0];
+        }
       });
   }
 
@@ -55,35 +49,55 @@ export class HomeComponent implements OnInit {
     this.homeService.getNumberOfProductsSoldSince(this.dateNow)
       .subscribe(data => {
         console.log(data);
-        this.numberOfProductsSoldSince = data.payload[0];
+        if (!data.ok) {
+          this.numberOfProductsSoldSince = new NumberView('0');
+        } else {
+          this.numberOfProductsSoldSince = data.payload[0];
+        }
       });
   }
 
   getClientsActiveSince() {
     this.homeService.getClientsActiveSince(this.dateNow).subscribe(data => {
       console.log(data);
-      this.clientsActiveSince = data.payload;
+      if (!data.ok) {
+        this.clientsActiveSince = new NumberView('0');
+      } else {
+        this.clientsActiveSince = new NumberView(data.payload.length.toString());
+      }
     });
   }
 
   getAmountOfSectors() {
     this.homeService.getAmountOfSectors().subscribe(data => {
       console.log(data);
-      this.amountOfSectors = data.payload[0];
+      if (!data.ok) {
+        this.amountOfSectors = new NumberView('0');
+      } else {
+        this.amountOfSectors = data.payload[0];
+      }
     });
   }
 
   getNumbersOfOrdersMadeSince() {
     this.homeService.getNumbersOfOrdersMadeSince(this.dateNow).subscribe(data => {
       console.log(data);
-      this.numbersOfOrdersMadeSince = data.payload[0];
+      if (!data.ok) {
+        this.numbersOfOrdersMadeSince = new NumberView('0');
+      } else {
+        this.numbersOfOrdersMadeSince = data.payload[0];
+      }
     });
   }
 
   getNumberOfHandledDeliveriesSince() {
-    this.homeService.getNumberOfHandledDeliveriesSince(this.dateNow).subscribe( data => {
+    this.homeService.getNumberOfHandledDeliveriesSince(this.dateNow).subscribe(data => {
       console.log(data);
-      this.numberOfHandledDeliveriesSince = data.payload[0];
+      if (!data.ok) {
+        this.numberOfHandledDeliveriesSince = new NumberView('0');
+      } else {
+        this.numberOfHandledDeliveriesSince = data.payload[0];
+      }
     });
   }
 }

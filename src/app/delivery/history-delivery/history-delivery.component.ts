@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {DeliveryService} from '../delivery.service';
 import {Delivery} from '../../models/Delivery.model';
+import {DeliveryStatus} from '../../models/DeliveryStatus.model';
 
 
 @Component({
@@ -19,5 +20,9 @@ export class HistoryDeliveryComponent implements OnInit {
     this.deliveryService.getAll().subscribe(data => {
       this.deliveries = data.payload;
     });
+  }
+
+  getDeliveryStatus(status: string) {
+    return DeliveryStatus[status];
   }
 }

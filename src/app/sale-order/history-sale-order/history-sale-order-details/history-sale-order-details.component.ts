@@ -8,6 +8,7 @@ import {ProductWithQuantityView} from '../../../models/ProductWithQuantityView.m
 import {AmountOfProduct} from '../../../models/AmountOfProduct.model';
 import {Client} from '../../../models/Client.model';
 import {ClientService} from '../../../client/client.service';
+import {Category} from '../../../models/Category.model';
 
 @Component({
   selector: 'app-history-sale-order-details',
@@ -55,6 +56,10 @@ export class HistorySaleOrderDetailsComponent implements OnInit {
   getTotalPrice(priceText: string, quantityText: string) {
     priceText = priceText.split(' ')[0];
     return (parseFloat(priceText) * parseFloat(quantityText)).toFixed(2) + ' PLN';
+  }
+
+  getCategory(category: string) {
+    return Category[category];
   }
 }
 

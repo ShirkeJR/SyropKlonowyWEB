@@ -4,6 +4,7 @@ import {NgForm} from '@angular/forms';
 import {Client} from '../../models/Client.model';
 import {ClientService} from '../client.service';
 import {Address} from '../../models/Address.model';
+import {EnterpriseType} from '../../models/EnterpriseType.model';
 
 @Component({
   selector: 'app-add-client',
@@ -12,6 +13,8 @@ import {Address} from '../../models/Address.model';
 })
 
 export class AddClientComponent {
+
+  enterprises: string[] = ['Sklep', 'Osoba prywatna', 'Hurtownia', 'Małe przedsiębiorstwo', 'Duże przedsiębiorstwo'];
 
   constructor(private route: ActivatedRoute, private router: Router, private clientService: ClientService) {
 
@@ -27,17 +30,37 @@ export class AddClientComponent {
       form.value.name,
       form.value.company,
       address,
-      form.value.enterpriseType);
+      this.getTrueEnterpriseType(form.value.enterpriseType));
 
     this.clientService.createClient(client).subscribe(data => {
       if (Boolean(data.ok).valueOf()) {
         alert('Client został dodany');
         this.router.navigate(['clients']);
       } else {
-        alert('Nie poprawny product');
+        alert('Nie poprawne dane clienta');
       }
       console.log(data.ok);
     });
   }
+
+  getEnterpriseType(enterprise: string) {
+    return EnterpriseType[enterprise];
+  }
+
+  getTrueEnterpriseType(enterpsise: string) {
+    switch (enterpsise) {
+      case 'Sklep':
+        return 'SHOP';
+      case 'Osoba prywatna':
+        return 'PRIVATE_PERSON';
+      case 'Hurtownia':
+        return 'WHOLESALE';
+      case 'Małe przedsiębiorstwo':
+        return 'SMALL_ENTERPRISE';
+      case 'Duże przedsiębiorstwo':
+        return 'LARGE_ENTERPRISE';
+      default:
+        return 'unknown';
+    }
 }
 

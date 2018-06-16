@@ -12,7 +12,7 @@
       <th>Kod pocztowy</th>
       <th>Typ firmy</th>
       <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
-      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nowego clienta</button></th>
+      <th><button class="btn btn-primary" [routerLink]="['add']">Dodaj nowego klienta</button></th>
     </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
       <td>{{client.deliveryAddress.city}}</td>
       <td>{{client.deliveryAddress.buildingNumber}}</td>
       <td>{{client.deliveryAddress.zipCode}}</td>
-      <td>{{client.enterpriseType}}</td>
+      <td>{{getEnterpriseType(client.enterpriseType)}}</td>
       <td></td>
       <td>
         <button class="btn btn-info" [routerLink]="['details', client.id]">Informacje</button>

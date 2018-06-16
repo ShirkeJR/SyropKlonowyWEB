@@ -25,7 +25,7 @@
       <td>{{client.deliveryAddress.city}}</td>
       <td>{{client.deliveryAddress.buildingNumber}}</td>
       <td>{{client.deliveryAddress.zipCode}}</td>
-      <td>{{client.enterpriseType}}</td>
+      <td>{{getEnterpriseType(client.enterpriseType)}}</td>
       <td><button class="btn btn-info" [routerLink]="['add', client.id]"> Stwórz zamówienie </button></td>
       <td></td>
     </tr>

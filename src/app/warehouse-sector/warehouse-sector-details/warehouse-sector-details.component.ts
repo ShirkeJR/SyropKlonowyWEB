@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {WarehouseSectorService} from '../warehouse-sector.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WarehouseSectorProductsView} from '../../models/WarehouseSectorProductsView.model';
+import {Category} from '../../models/Category.model';
 
 
 @Component({
@@ -27,6 +28,10 @@ export class WarehouseSectorDetailsComponent implements OnInit {
         this.products = data.payload;
       });
     });
+  }
+
+  getCategory(category: string) {
+    return Category[category];
   }
 }
 
