@@ -1,33 +1,33 @@
 <div>
-  <h2 class="text-center">Kreator nowego klienta</h2>
-  <div class="container">
+  <h2 class="list-group-item list-group-item-action active bg-dark">Kreator nowego klienta</h2>
+  <div class="container list-group-item">
     <form (ngSubmit)="addClient(f)" #f="ngForm">
       <div class="form-group">
-        <label for="name">Nazwa:</label>
+        <label for="name"><strong>Nazwa:</strong></label>
         <input ngModel placeholder="nazwa" name="name" class="form-control" id="name" required>
       </div>
       <div class="form-group">
-        <label for="company">Firma:</label>
+        <label for="company"><strong>Firma:</strong></label>
         <input ngModel placeholder="firma" name="company" class="form-control" id="company" required>
       </div>
       <div class="form-group">
-        <label for="street">Ulica:</label>
+        <label for="street"><strong>Ulica:</strong></label>
         <input ngModel placeholder="ulica" name="street" class="form-control" id="street" required>
       </div>
       <div class="form-group">
-        <label for="buildingNumber">Nr mieszkania:</label>
+        <label for="buildingNumber"><strong>Nr mieszkania:</strong></label>
         <input ngModel placeholder="0" name="buildingNumber" class="form-control" id="buildingNumber" required>
       </div>
       <div class="form-group">
-        <label for="city">Miasto:</label>
+        <label for="city"><strong>Miasto:</strong></label>
         <input ngModel placeholder="miasto" name="city" class="form-control" id="city" required>
       </div>
       <div class="form-group">
-        <label for="zipCode">Kod zip:</label>
+        <label for="zipCode"><strong>Kod zip:</strong></label>
         <input ngModel placeholder="00-000" name="zipCode" class="form-control" id="zipCode" required>
       </div>
       <div class="form-group">
-        <label for="enterpriseType">Typ firmy:</label>
+        <label for="enterpriseType"><strong>Typ firmy:</strong></label>
         <select id="enterpriseType" name="enterpriseType" ngModel class="form-control" required>
           <option *ngFor="let ent of enterprises">{{ent}}</option>
         </select>

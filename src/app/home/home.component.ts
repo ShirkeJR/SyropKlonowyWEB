@@ -4,7 +4,6 @@ import {HomeService} from './home.service';
 import {PriceView} from '../models/PriceView.model';
 import {NumberView} from '../models/NumberView.model';
 import {ProductService} from '../product/product.service';
-import {EnterpriseType} from '../models/EnterpriseType.model';
 
 @Component({
   selector: 'app-home',

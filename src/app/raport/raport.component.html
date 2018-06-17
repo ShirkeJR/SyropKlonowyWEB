@@ -1,0 +1,36 @@
+<div class="container">
+  <form (ngSubmit)="generateRaport(f)" #f="ngForm">
+    <div class="form-row">
+      <div class="col">
+        <label for="startDate"><strong>Data od:</strong></label>
+        <input ngModel placeholder="dd/mm/yyyy" name="startDate" class="form-control" id="startDate" required>
+      </div>
+      <div class="col">
+        <label for="endDate"><strong>Data do:</strong></label>
+        <input ngModel placeholder="dd/mm/yyyy" name="endDate" class="form-control" id="endDate" required>
+      </div>
+      <button class="btn btn-sm btn-success" type="submit" [disabled]="!f.valid">Generuj raport</button>
+    </div>
+  </form>
+  <br>
+
+  <div class="list-group">
+    <h4 class="list-group-item list-group-item-action active bg-dark"> Raport [{{fromDate | date: 'dd/MM/yyyy'}} - {{toDate | date: 'dd/MM/yyyy'}}] </h4>
+    <div class="list-group-item list-group-item-action">
+      <a><strong>Ilość produktów zakupionych przez firmy:</strong>
+        <a class="list-group-item list-group-item-action" *ngFor="let item of enterpriseWithVolumePurchased"> <strong>{{item.value1}}</strong>: {{item.value2}}</a>
+      </a>
+    </div>
+    <div class="list-group-item list-group-item-action">
+      <a><strong>Ilość wydanych pieniędzy przez firmy:</strong>
+        <a class="list-group-item list-group-item-action" *ngFor="let item of enterpriseWithValuePurchased"> <strong>{{item.value1}}</strong>: {{item.value2}}</a>
+      </a>
+    </div>
+    <a class="list-group-item list-group-item-action"><strong>Wykupione produkty:</strong>
+      <span *ngFor="let item of purchasedProductsWithQuantity; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+    <a class="list-group-item list-group-item-action"><strong>Produkty, które się kończą:</strong>
+      <span *ngFor="let item of productsRunningOutWithQuantity; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+  </div>
+</div>

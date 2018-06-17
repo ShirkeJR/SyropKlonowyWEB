@@ -3,8 +3,8 @@ export class DataViewValue {
   value1: string;
   value2: string;
 
-  constructor(val: string) {
-    this.value1 = val;
-    this.value2 = val;
+  constructor(value1: string, value2: string) {
+    this.value1 = value1;
+    this.value2 = value2;
   }
 }

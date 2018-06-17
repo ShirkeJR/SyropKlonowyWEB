@@ -1,7 +1,8 @@
 export class SaleReportView {
-
-  purchasedProductsWithQuantity: Map<string, string>;
-  productsRunningOutWithQuantity: Map<string, string>;
-  enterpriseWithVolumePurchased: Map<string, string>;
-  enterpriseWithValuePurchased: Map<string, string>;
+  fromDate: string;
+  toDate: string;
+  purchasedProductsWithQuantity: any;
+  productsRunningOutWithQuantity: any;
+  enterpriseWithVolumePurchased: any;
+  enterpriseWithValuePurchased: any;
 }
