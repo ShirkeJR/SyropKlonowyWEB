@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Delivery} from '../../../models/Delivery.model';
 import {Response} from '../../../models/Response.model';
 import {Category} from '../../../models/Category.model';
+import {DeliveryStatus} from '../../../models/DeliveryStatus.model';
 
 @Component({
   selector: 'app-history-delivery-details',
@@ -39,5 +40,8 @@ export class HistoryDeliveryDetailsComponent implements OnInit {
     return Category[category];
   }
 
+  getDeliveryStatus(status: string) {
+    return DeliveryStatus[status];
+  }
 }
 

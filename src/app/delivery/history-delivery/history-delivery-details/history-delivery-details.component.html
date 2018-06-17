@@ -1,7 +1,7 @@
 <div>
-  <li class="row">
-    <ul><h2>Szczegóły dostawy - produkty</h2></ul>
-  </li>
+  <h2>Szczegóły dostawy [{{delivery?.id}}] - produkty</h2>
+  <a><strong>Status:</strong> {{getDeliveryStatus(delivery?.deliveryStatus)}} </a>
+  <a> <strong>Data:</strong> {{delivery?.deliveryDate}}</a>
   <table class="table table-striped">
     <thead>
     <tr>

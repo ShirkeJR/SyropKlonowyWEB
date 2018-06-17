@@ -27,7 +27,7 @@ import {RaportComponent} from './raport/raport.component';
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
   {path: 'warehouseSectors/add', component: AddWarehouseSectorComponent},
-  {path: 'warehouseSectors/details/:id/:name', component: WarehouseSectorDetailsComponent},
+  {path: 'warehouseSectors/details/:id', component: WarehouseSectorDetailsComponent},
   {path: 'products', component: ProductComponent},
   {path: 'products/details/:id', component: ProductDetailsComponent},
   {path: 'deliveries', component: DeliveryComponent},
