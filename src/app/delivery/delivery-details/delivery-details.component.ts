@@ -34,9 +34,13 @@ export class DeliveryDetailsComponent implements OnInit {
         this.deliveryService.startDelivery(this.deliveryId).subscribe((data: Response<DeliveryInProcessView>) => console.log(data));
       }
     });
+    this.fetchData();
+  }
+
+  fetchData() {
     this.warehouseSectorService.getAll().subscribe(data1 => {
       this.warehouseSectors = data1.payload;
-      this.deliveryService.getProcessedDeliveryById(this.deliveryId).subscribe((data2: Response<DeliveryInProcessView>) => {
+      this.deliveryService.getProcessedDeliveryById(this.deliveryId).subscribe(data2 => {
         this.deliveryInProgress = data2.payload[0];
       });
     });

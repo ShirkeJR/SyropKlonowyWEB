@@ -22,12 +22,10 @@ export class DeliveryComponent implements OnInit {
   ngOnInit() {
     this.deliveryService.getAllByDeliveryStatus('NEW').subscribe(data1 => {
       console.log(data1);
-      setTimeout(() => {
         this.deliveryService.getAllByDeliveryStatus('IN_PROCESS').subscribe(data2 => {
           console.log(data2);
           this.deliveries = [].concat(data1.payload, data2.payload);
         });
-      }, 50);
     });
   }
 

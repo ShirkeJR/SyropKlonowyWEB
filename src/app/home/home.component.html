@@ -5,7 +5,7 @@
   <a class="list-group-item list-group-item-action"><strong>Aktywni clienci z ostatniego miesiąca:</strong> {{clientsActiveSince?.number}} </a>
   <a class="list-group-item list-group-item-action"><strong>Liczba sektorów na magazynie: </strong> {{amountOfSectors?.number}}</a>
   <a class="list-group-item list-group-item-action"><strong>Liczba złożonych zamówień w ciągu miesiąca: </strong> {{numbersOfOrdersMadeSince?.number}}</a>
-  <a class="list-group-item list-group-item-action"><strong>Liczba rozładowanych dostaw w ciągu miesiąca: </strong> {{numberOfHandledDeliveriesSince?.number}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Liczba dostarczonych dostaw w ciągu miesiąca: </strong> {{numberOfHandledDeliveriesSince?.number}}</a>
   <a class="list-group-item list-group-item-action"><strong>Najeczęściej zakupione produkty w ciągu tygodnia:</strong>
     <span *ngFor="let item of mostFrequentlyBoughtThisWeek; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
   </a>
