@@ -37,7 +37,7 @@ export class AddClientComponent {
         alert('Client został dodany');
         this.router.navigate(['clients']);
       } else {
-        alert('Nie poprawne dane clienta');
+        alert('Nie poprawny product');
       }
       console.log(data.ok);
     });
@@ -62,5 +62,6 @@ export class AddClientComponent {
       default:
         return 'unknown';
     }
+  }
 }
 

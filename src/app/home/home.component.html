@@ -3,7 +3,29 @@
   <a class="list-group-item list-group-item-action"><strong>Przychód z zamówień z ostatniego miesiąca:</strong> {{incomeFromOrders?.price}}</a>
   <a class="list-group-item list-group-item-action"><strong>Liczba sprzedanych produktów z ostatniego miesiąca:</strong> {{numberOfProductsSoldSince?.number}}</a>
   <a class="list-group-item list-group-item-action"><strong>Aktywni clienci z ostatniego miesiąca:</strong> {{clientsActiveSince?.number}} </a>
-  <a class="list-group-item list-group-item-action"><strong>Liczba sektorów na magazynie:</strong> {{amountOfSectors?.number}}</a>
-  <a class="list-group-item list-group-item-action"><strong>Liczba złożonych zamówień w ciągu miesiąca:</strong> {{numbersOfOrdersMadeSince?.number}}</a>
-  <a class="list-group-item list-group-item-action"><strong>Liczba dostarczonych dostaw w ciągu miesiąca:</strong> {{numberOfHandledDeliveriesSince?.number}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Liczba sektorów na magazynie: </strong> {{amountOfSectors?.number}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Liczba złożonych zamówień w ciągu miesiąca: </strong> {{numbersOfOrdersMadeSince?.number}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Liczba rozładowanych dostaw w ciągu miesiąca: </strong> {{numberOfHandledDeliveriesSince?.number}}</a>
+  <a class="list-group-item list-group-item-action"><strong>Najeczęściej zakupione produkty w ciągu tygodnia:</strong>
+    <span *ngFor="let item of mostFrequentlyBoughtThisWeek; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+  </a>
+  <div class="list-group-item list-group-item-action">
+    <a><strong>Najeczęściej zakupione produkt przez typy firm w ciągu tygodnia: </strong></a>
+    <a class="list-group-item list-group-item-action"><strong>Hurtownie: </strong>
+      <span *ngFor="let item of enterPriseWholeSale; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+    <a class="list-group-item list-group-item-action"><strong>Prywatni:
+    </strong> <span *ngFor="let item of enterPrisePrivate; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+    <a class="list-group-item list-group-item-action"><strong>Sklepy: </strong>
+      <span *ngFor="let item of enterPriseShop; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+    <a class="list-group-item list-group-item-action"><strong>Duże przedsiębiorstwa: </strong>
+      <span *ngFor="let item of enterPriseLarge; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+    <a class="list-group-item list-group-item-action"><strong>Małe przedsiębiorstwa: </strong>
+      <span *ngFor="let item of enterPriseSmall; let isLast = last"> {{item}}{{isLast ? '' : ', '}}</span>
+    </a>
+  </div>
 </div>
+

@@ -44,30 +44,26 @@ export class DeliveryDetailsComponent implements OnInit {
 
   placeProduct(id: string, amount: string, sectorId: string) {
     this.deliveryService.placeProduct(this.deliveryId, id, amount, sectorId)
-      .subscribe((data: Response<DeliveryInProcessView>) => {
-        if (!data.ok) {
+      .subscribe((data1: Response<DeliveryInProcessView>) => {
+        if (!data1.ok) {
           alert('UWAGA!!! Brak tyle produktu, lub magazyn jest pełny');
         } else {
           alert('Przeniesiono produkty na magazyn');
+          this.warehouseSectorService.getAll().subscribe(data2 => {
+            this.warehouseSectors = data2.payload;
+          });
+          this.deliveryService.getProcessedDeliveryById(this.deliveryId)
+            .subscribe((data3: Response<DeliveryInProcessView>) => {
+              console.log(data3.payload.length);
+              if (data3.payload[0] === null) {
+                alert('Dostawa rozłożona');
+                this.router.navigate(['deliveries']);
+              } else {
+                this.deliveryInProgress = data3.payload[0];
+              }
+            });
         }
       });
-    setTimeout(() => {
-      this.warehouseSectorService.getAll().subscribe(data => {
-        this.warehouseSectors = data.payload;
-      });
-    }, 100);
-    setTimeout(() => {
-      this.deliveryService.getProcessedDeliveryById(this.deliveryId)
-        .subscribe((data: Response<DeliveryInProcessView>) => {
-          console.log(data.payload.length);
-          if (data.payload[0] === null) {
-            alert('Dostawa rozłożona');
-            this.router.navigate(['deliveries']);
-          } else {
-            this.deliveryInProgress = data.payload[0];
-          }
-        });
-    }, 100);
   }
 }
 

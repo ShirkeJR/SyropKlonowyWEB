@@ -37,4 +37,13 @@ export class ProductService {
     return this.http.get<Response<DataView>>(this.productMarketingUrl + 'showFrequentlyBoughtTogether?' +
       'productId=' + id);
   }
+
+  public showMostFrequentlyBoughtThisWeek(): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.productMarketingUrl + 'showMostFrequentlyBoughtThisWeek');
+  }
+
+  public showMostFrequentlyBoughtThisWeekByEnterprise(enterpriseType: string): Observable<Response<DataView>> {
+    return this.http.get<Response<DataView>>(this.productMarketingUrl + 'showMostFrequentlyBoughtThisWeekByEnterprise?' +
+    'enterpriseType=' + enterpriseType);
+  }
 }

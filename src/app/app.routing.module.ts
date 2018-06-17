@@ -22,6 +22,7 @@ import {SaleOrderCreatorComponent} from './sale-order/sale-order-creator/sale-or
 import {ClientDetailsComponent} from './client/client-details/client-details.component';
 import {HomeComponent} from './home/home.component';
 import {ProductDetailsComponent} from './product/product-details/product-details.component';
+import {RaportComponent} from './raport/raport.component';
 
 const routes: Routes = [
   {path: 'warehouseSectors', component: WarehouseSectorComponent},
@@ -43,6 +44,7 @@ const routes: Routes = [
   {path: 'clients', component: ClientComponent},
   {path: 'clients/details/:id', component: ClientDetailsComponent},
   {path: 'clients/add', component: AddClientComponent},
+  {path: 'raports', component: RaportComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'signin', component: SigninComponent},
   {path: '', component: HomeComponent}

@@ -16,7 +16,6 @@ export class ProductsInWarehouseFilterComponent implements PipeTransform {
         it.productId.toString().includes(searchText) ||
         it.price.toString().includes(searchText) ||
         it.quantity.toString().includes(searchText) ||
-        it.description.toLowerCase().includes(searchText) ||
         it.category.toLowerCase().includes(searchText);
     });
   }

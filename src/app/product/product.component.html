@@ -7,6 +7,7 @@
       <th>#</th>
       <th>Nazwa</th>
       <th>Kategoria</th>
+      <th>Data produkcji</th>
       <th>Cena</th>
       <th>Ilość</th>
       <th><input type="text" [(ngModel)]="searchText" placeholder="Szukaj"></th>
@@ -17,6 +18,7 @@
       <td><strong>{{product.productId}}</strong></td>
       <td>{{product.name}}</td>
       <td>{{getCategory(product.category)}}</td>
+      <td>{{product.productionDate}}</td>
       <td>{{product.price}}</td>
       <td>{{product.quantity}}</td>
       <td>

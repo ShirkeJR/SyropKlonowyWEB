@@ -40,6 +40,8 @@ import {ProductsInWarehouseFilterComponent} from './warehouse-sector/warehouse-s
 import {HistoryDeliveryFilterComponent} from './delivery/history-delivery/history-delivery-filter.component';
 import {ClientFilterComponent} from './client/client-filter.component';
 import {HistorySaleOrderFilterPipe} from './sale-order/history-sale-order/history-sale-order-filter.pipe';
+import {RaportService} from './raport/raport.service';
+import {RaportComponent} from './raport/raport.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import {HistorySaleOrderFilterPipe} from './sale-order/history-sale-order/histor
     HomeComponent,
     ProductDetailsComponent,
     ClientFilterComponent,
-    HistorySaleOrderFilterPipe
+    HistorySaleOrderFilterPipe,
+    RaportComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ import {HistorySaleOrderFilterPipe} from './sale-order/history-sale-order/histor
     HttpClientModule,
     FormsModule
   ],
-  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService, SaleOrderService, HomeService],
+  providers: [WarehouseSectorService, ProductService, DeliveryService, ClientService, SaleOrderService, HomeService, RaportService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

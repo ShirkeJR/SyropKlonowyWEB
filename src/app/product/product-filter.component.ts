@@ -17,6 +17,7 @@ export class ProductFilterComponent implements PipeTransform {
       return it.name.toLowerCase().includes(searchText) ||
         it.productId.toString().includes(searchText) ||
         it.price.toString().includes(searchText) ||
+        it.productionDate.toString().includes(searchText) ||
         it.quantity.toString().includes(searchText) ||
         it.description.toLowerCase().includes(searchText) ||
         Category[it.category].toLowerCase().includes(searchText);

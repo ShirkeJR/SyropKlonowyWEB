@@ -85,7 +85,7 @@ export class ClientDetailsComponent implements OnInit {
     this.productService.getById(id).subscribe(data => {
       const product = data.payload[0];
       product.quantity = quantity;
-      this.mostCommonlyPurchasedProducts.push(product.name + ' x ' + product.quantity);
+      this.mostCommonlyPurchasedProducts.push(product.name + '(' + product.quantity + ')');
     });
   }
 
